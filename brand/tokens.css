@@ -1,0 +1,249 @@
+/* ============================================================================
+   Our Family Rocks — brand tokens
+   Faithfully extracted from the live-site mirror:
+   BMSG-Brands/ourfamilyrocks.com/index.html (verbatim, 2026-07-31).
+   Source of truth is the mirror; do not invent values here.
+   ============================================================================ */
+
+/* ---- Typography (exactly as loaded by the live site) ----------------------
+   The live page uses <link preconnect + stylesheet>; @import is the drop-in
+   single-file equivalent for consumers of this token sheet. */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ---- Core palette — default "Ocean" theme (site :root) ---- */
+  /* --ofr-* are the portable names; the originals below are kept as aliases
+     so site CSS copied verbatim keeps working. */
+  --ofr-indigo:   #5C4A82;  /* primary accent (buttons, h1 em, dad-drop tint) */
+  --ofr-indigo-d: #463769;  /* primary hover / dark; also .app-sec background */
+  --ofr-blue:     #1C6396;  /* secondary accent, focus outline */
+  --ofr-blue-d:   #154C74;
+  --ofr-teal:     #0F7362;  /* eyebrow default, screen-cta */
+  --ofr-teal-d:   #0B5A4D;
+  --ofr-amber:    #A4560C;  /* points/reward accent */
+  --ofr-amber-d:  #7E420A;
+  --ofr-ink:      #272B30;  /* headings + body text */
+  --ofr-slate:    #5C6470;  /* secondary text */
+  --ofr-bg:       #FAFBFC;  /* page background */
+  --ofr-line:     #E6E9ED;  /* borders / hairlines */
+  --ofr-card:     #ffffff;  /* card surfaces, footer bg */
+  --ofr-hero-a:   #F3F6F9;  /* hero gradient start */
+  --ofr-on-accent:#FFFFFF;  /* text on accent-coloured fills */
+
+  /* ---- Character colours (the Rocks family water-drops) ----
+     "bright character colours from the original artwork (deliberately NOT
+     theme vars)" — constant across all themes. */
+  --ofr-drop-dad:  #9B5FC0;
+  --ofr-drop-mum:  #EC3C97;  /* Mum character colour (seed chip retired per §16.5, 12 Aug 2026) */
+  --ofr-drop-finn: #2196F0;
+  --ofr-drop-ruby: #F7941E;
+  --ofr-drop-dark: #1D1826;  /* pupils/mouth-lines; also .phone shell bg */
+  --ofr-iris:      #2E7BD6;
+  --ofr-bow:       #E0509A;  /* mum/ruby hair-bow */
+  --ofr-bow-d:     #B23A78;
+  --ofr-check:     #7ED8C8;  /* check-list ticks on indigo-d */
+
+  /* ---- Radii ---- */
+  --ofr-r:      18px;        /* cards (site --r) */
+  --ofr-r-menu: 14px;        /* burger dropdown */
+  --ofr-r-icon: 12px;        /* feature icons, store badges, feed items */
+  --ofr-r-btn:  10px;        /* buttons, menu links, screen-cta */
+
+  /* ---- Shadows ---- */
+  --ofr-shadow-s: 0 1px 2px rgba(30,35,42,.05), 0 4px 14px rgba(30,35,42,.06);
+  --ofr-shadow-m: 0 2px 4px rgba(30,35,42,.06), 0 14px 34px rgba(30,35,42,.10);
+
+  /* ---- Type ---- */
+  --ofr-font-display: 'Bricolage Grotesque', sans-serif; /* h1/h2/h3, app titles */
+  --ofr-font-body:    'Inter', sans-serif;               /* everything else */
+
+  /* ---- Original site aliases (verbatim names from index.html :root) ---- */
+  --indigo: var(--ofr-indigo);   --indigo-d: var(--ofr-indigo-d);
+  --blue:   var(--ofr-blue);     --blue-d:   var(--ofr-blue-d);
+  --teal:   var(--ofr-teal);     --teal-d:   var(--ofr-teal-d);
+  --amber:  var(--ofr-amber);    --amber-d:  var(--ofr-amber-d);
+  --ink:    var(--ofr-ink);
+  --slate:  var(--ofr-slate);
+  --bg:     var(--ofr-bg);
+  --line:   var(--ofr-line);
+  --card:   var(--ofr-card);
+  --hero-a: var(--ofr-hero-a);
+  --on-accent: var(--ofr-on-accent);
+  --r:      var(--ofr-r);
+  --shadow-s: var(--ofr-shadow-s);
+  --shadow-m: var(--ofr-shadow-m);
+}
+
+/* ---- Alternate colour themes (site: html[data-theme=...], "all pairs WCAG
+   AA verified"). Ocean = the :root defaults above (no attribute). ---- */
+html[data-theme="forest"] {
+  --ofr-indigo:#3B6A3D; --ofr-indigo-d:#2C5130; --ofr-blue:#1C6396;
+  --ofr-teal:#0F7362; --ofr-amber:#8A5A00;
+  --ofr-bg:#F6F8F1; --ofr-card:#FFFFFF; --ofr-line:#E2E7D8; --ofr-ink:#232A1E;
+  --ofr-slate:#59634F; --ofr-hero-a:#EBF0E2; --ofr-on-accent:#FFFFFF;
+}
+html[data-theme="sunset"] {
+  --ofr-indigo:#9C3F16; --ofr-indigo-d:#7A300F; --ofr-blue:#8A5A00;
+  --ofr-teal:#9C500A; --ofr-amber:#7D4A00;
+  --ofr-bg:#FBF5EC; --ofr-card:#FFFDF8; --ofr-line:#ECE0CF; --ofr-ink:#2F2418;
+  --ofr-slate:#6E5C49; --ofr-hero-a:#F5E9D8; --ofr-on-accent:#FFFFFF;
+}
+html[data-theme="night"] {
+  --ofr-indigo:#578FBB; --ofr-indigo-d:#22303B; --ofr-blue:#77B4DF;
+  --ofr-teal:#5BC0AA; --ofr-amber:#E0A360;
+  --ofr-bg:#14181C; --ofr-card:#1C2228; --ofr-line:#2B333B; --ofr-ink:#E9ECEF;
+  --ofr-slate:#A6AFB8; --ofr-hero-a:#1A2129; --ofr-on-accent:#14181C;
+}
+
+/* Theme-picker dot swatches (fixed colours, not vars — from .dot-* rules) */
+.ofr-dot-ocean  { background:#5C4A82 }
+.ofr-dot-forest { background:#3B6A3D }
+.ofr-dot-sunset { background:#9C3F16 }
+.ofr-dot-night  { background:#14181C }
+
+/* ============================================================================
+   Component classes (verbatim behaviour from the mirror, alias-var based)
+   ============================================================================ */
+
+/* ---- Base type ---- */
+.ofr-body {
+  font-family: var(--ofr-font-body);
+  color: var(--ofr-ink);
+  background: var(--ofr-bg);
+  line-height: 1.65;
+  font-size: 16px;
+}
+.ofr-display, h1.ofr, h2.ofr, h3.ofr {
+  font-family: var(--ofr-font-display);
+  line-height: 1.12;
+  letter-spacing: -.01em;
+  color: var(--ofr-ink);
+}
+:focus-visible { outline: 2.5px solid var(--ofr-blue); outline-offset: 3px; border-radius: 6px }
+
+/* ---- Layout wrap (site .wrap) ---- */
+.ofr-wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem }
+
+/* ---- Button / pill CTA (site .btn / .btn-primary) ---- */
+.ofr-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--ofr-font-body); font-weight: 600; text-decoration: none;
+  border-radius: var(--ofr-r-btn); padding: .65rem 1.35rem; font-size: .95rem;
+  transition: background .15s, transform .15s; cursor: pointer; border: none;
+}
+.ofr-btn-primary {
+  background: var(--ofr-indigo); color: var(--ofr-on-accent);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--ofr-indigo) 28%, transparent);
+}
+.ofr-btn-primary:hover {
+  background: var(--ofr-indigo-d); transform: translateY(-1px);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--ofr-indigo) 38%, transparent);
+}
+
+/* ---- Eyebrow (site .eyebrow — teal by default, recoloured per section) ---- */
+.ofr-eyebrow {
+  display: inline-block; font-size: .78rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ofr-teal); margin-bottom: 1.1rem;
+}
+
+/* ---- Feature card (site .feature; set --c to an accent var per card) ---- */
+.ofr-feature {
+  --c: var(--ofr-indigo);
+  position: relative; overflow: hidden;
+  background: var(--ofr-card); border: 1px solid var(--ofr-line);
+  border-radius: var(--ofr-r); padding: 1.8rem 1.7rem;
+  box-shadow: var(--ofr-shadow-s);
+  transition: transform .18s, box-shadow .18s;
+}
+.ofr-feature:hover { transform: translateY(-3px); box-shadow: var(--ofr-shadow-m) }
+.ofr-feature::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 100%; height: 3px;
+  background: var(--c); transition: right .28s ease;
+}
+.ofr-feature:hover::before, .ofr-feature:focus-within::before { right: 0 }
+.ofr-feature .tag {
+  display: inline-block; font-size: .68rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--c); margin-bottom: .5rem;
+}
+.ofr-feature h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: .45rem }
+.ofr-feature p  { font-size: .94rem; color: var(--ofr-slate) }
+.ofr-f-icon {
+  width: 42px; height: 42px; border-radius: var(--ofr-r-icon);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.1rem;
+  background: color-mix(in srgb, var(--c) 14%, var(--ofr-card));
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1);
+}
+.ofr-f-icon svg { width: 21px; height: 21px; fill: var(--c) }
+.ofr-feature:hover .ofr-f-icon { transform: scale(1.12) rotate(-4deg) }
+
+/* ---- Sticky nav + burger (site .nav / .burger / .nav-menu) ---- */
+.ofr-nav {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--ofr-bg) 90%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--ofr-line);
+}
+.ofr-nav-inner {
+  max-width: 1080px; margin: 0 auto; position: relative;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .8rem 1.5rem;
+}
+.ofr-nav-logo img { height: 38px; width: auto }
+.ofr-burger {
+  width: 44px; height: 44px; border: none; background: transparent; cursor: pointer;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  gap: 6px; border-radius: 10px; transition: background .15s;
+}
+.ofr-burger:hover { background: color-mix(in srgb, var(--ofr-ink) 7%, transparent) }
+.ofr-burger span {
+  display: block; width: 22px; height: 2.5px; border-radius: 2px;
+  background: var(--ofr-ink);
+  transition: transform .25s cubic-bezier(.2,.7,.3,1), opacity .2s;
+}
+.ofr-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(8.5px) rotate(45deg) }
+.ofr-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0 }
+.ofr-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg) }
+.ofr-nav-menu {
+  position: absolute; top: calc(100% + 8px); right: 1.5rem; min-width: 232px;
+  background: var(--ofr-card); border: 1px solid var(--ofr-line);
+  border-radius: var(--ofr-r-menu); box-shadow: var(--ofr-shadow-m);
+  padding: .55rem; display: flex; flex-direction: column; gap: .15rem; z-index: 60;
+  opacity: 0; transform: translateY(-8px); pointer-events: none;
+  transition: opacity .22s ease, transform .22s cubic-bezier(.2,.7,.3,1);
+}
+.ofr-nav-menu.open { opacity: 1; transform: none; pointer-events: auto }
+.ofr-nav-menu a {
+  padding: .65rem .85rem; border-radius: 9px; text-decoration: none;
+  color: var(--ofr-ink); font-weight: 500; font-size: .95rem; transition: background .15s;
+}
+.ofr-nav-menu a:hover { background: color-mix(in srgb, var(--ofr-ink) 7%, transparent) }
+
+/* ---- Store badge (site .store-badge) ---- */
+.ofr-store-badge {
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: var(--ofr-ink); color: var(--ofr-bg);
+  border-radius: var(--ofr-r-icon); padding: .58rem 1.1rem;
+  text-decoration: none; line-height: 1.15;
+  transition: transform .15s, background .15s;
+}
+.ofr-store-badge:hover { transform: translateY(-1px); background: color-mix(in srgb, var(--ofr-ink) 90%, var(--ofr-bg)) }
+.ofr-store-badge svg { width: 23px; height: 23px; flex: none }
+.ofr-store-badge .s { display: block; font-size: .6rem; letter-spacing: .03em; opacity: .8 }
+.ofr-store-badge .b { display: block; font-weight: 600; font-size: .98rem }
+
+/* ---- Footer (site footer / .foot) ---- */
+.ofr-footer {
+  background: var(--ofr-card); border-top: 1px solid var(--ofr-line);
+  padding: 2.2rem 0; color: var(--ofr-slate);
+}
+.ofr-foot {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1.2rem; flex-wrap: wrap;
+}
+.ofr-foot img { height: 32px; width: auto }
+.ofr-foot nav { display: flex; gap: 1.6rem; font-size: .88rem; font-weight: 500 }
+.ofr-foot a { text-decoration: none; color: var(--ofr-slate) }
+.ofr-foot a:hover { color: var(--ofr-ink) }

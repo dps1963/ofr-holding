@@ -1,0 +1,46 @@
+{
+  "source": "BMSG-Brands/ourfamilyrocks.com/index.html (live-site mirror, 2026-07-31)",
+  "nav": {
+    "pattern": "sticky header: wordmark logo (left) + 'Get the app' pill CTA + burger; all nav links live inside the burger dropdown (.nav-menu), CTA hidden under 560px",
+    "logo": { "asset": "assets/logo-wordmark.webp", "href": "#top", "ariaLabel": "Our Family Rocks home", "height": "38px" },
+    "cta": { "label": "Get the app", "href": "#download", "class": "btn btn-primary nav-cta" },
+    "menu": [
+      { "label": "Features", "href": "#features" },
+      { "label": "How it works", "href": "#how" },
+      { "label": "The app", "href": "#app" },
+      { "label": "Download", "href": "#download" }
+    ],
+    "themePicker": {
+      "location": "bottom of burger menu, role=group 'Choose a colour palette'",
+      "options": [
+        { "label": "Ocean", "dataTheme": "ocean", "dot": "#5C4A82", "default": true },
+        { "label": "Forest", "dataTheme": "forest", "dot": "#3B6A3D" },
+        { "label": "Sunset", "dataTheme": "sunset", "dot": "#9C3F16" },
+        { "label": "Night", "dataTheme": "night", "dot": "#14181C" }
+      ]
+    }
+  },
+  "sections": [
+    { "id": "features", "eyebrow": "What it does", "heading": "Everything a family juggles, in one app" },
+    { "id": "how", "eyebrow": "Getting started", "heading": "Set up in minutes" },
+    { "id": "app", "heading": "The whole family, in your pocket" },
+    { "id": "download", "heading": "Ready when your family is" }
+  ],
+  "footer": {
+    "logo": { "asset": "assets/logo-wordmark.webp", "height": "32px", "alt": "Our Family Rocks" },
+    "links": [
+      { "label": "Features", "href": "#features" },
+      { "label": "The app", "href": "#app" },
+      { "label": "Download", "href": "#download" },
+      { "label": "Privacy", "href": "#", "note": "placeholder on live site" },
+      { "label": "Contact", "href": "#", "note": "placeholder on live site" }
+    ],
+    "legal": [
+      "© 2026 Our Family Rocks. Made for families everywhere.",
+      { "text": "A member of the BringMeSunshineGroup", "href": "https://bringmesunshinegroup.com/" }
+    ]
+  },
+  "otherPages": [
+    { "path": "/faq.html", "title": "Our Family Rocks — Frequently Asked Questions", "note": "standalone FAQ (feeds the AI support assistant); not linked from the index nav/footer in this mirror" }
+  ]
+}

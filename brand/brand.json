@@ -1,0 +1,101 @@
+{
+  "id": "ofr",
+  "name": "Our Family Rocks",
+  "domain": "ourfamilyrocks.com",
+  "status": "extracted-from-live-mirror",
+  "updated": "2026-07-31",
+  "source": {
+    "mirror": "BMSG-Brands/ourfamilyrocks.com/index.html (verbatim live-site mirror) + faq.html",
+    "seed": "BMSG Brands/brands/ofr/brand.json (seed primary #ec3c97)"
+  },
+  "voice": {
+    "oneLiner": "Family life, celebrated.",
+    "tagline": "One calm place for busy family life.",
+    "eyebrow": "The family app for real life",
+    "tone": "playful, inclusive, energetic; calm and reassuring to grown-ups, fun for kids; families of every shape and any size (unlimited children is a platform rule, GIV-13); privacy-first ('private by default — nothing is ever shared publicly')",
+    "vocabulary": {
+      "members": "each person is their own 'drop' (water-drop character)",
+      "points": "pebble points (chores/challenges reward currency)",
+      "pillars": ["Plan (shared family calendar)", "Do (chores & challenges)", "Explore (adventure ideas)", "Keep (private memory stream)"],
+      "family": "The Rocks family — Dad, Mum, Finn, Ruby"
+    },
+    "footerLine": "© Our Family Rocks. Made for families everywhere. · A member of the BringMeSunshineGroup"
+  },
+  "colors": {
+    "themes": {
+      "ocean": {
+        "note": "default theme (site :root, no data-theme attribute)",
+        "indigo": "#5C4A82", "indigoDark": "#463769",
+        "blue": "#1C6396", "blueDark": "#154C74",
+        "teal": "#0F7362", "tealDark": "#0B5A4D",
+        "amber": "#A4560C", "amberDark": "#7E420A",
+        "ink": "#272B30", "slate": "#5C6470",
+        "bg": "#FAFBFC", "line": "#E6E9ED", "card": "#FFFFFF",
+        "heroA": "#F3F6F9", "onAccent": "#FFFFFF"
+      },
+      "forest": {
+        "indigo": "#3B6A3D", "indigoDark": "#2C5130", "blue": "#1C6396",
+        "teal": "#0F7362", "amber": "#8A5A00",
+        "bg": "#F6F8F1", "card": "#FFFFFF", "line": "#E2E7D8",
+        "ink": "#232A1E", "slate": "#59634F", "heroA": "#EBF0E2", "onAccent": "#FFFFFF"
+      },
+      "sunset": {
+        "indigo": "#9C3F16", "indigoDark": "#7A300F", "blue": "#8A5A00",
+        "teal": "#9C500A", "amber": "#7D4A00",
+        "bg": "#FBF5EC", "card": "#FFFDF8", "line": "#ECE0CF",
+        "ink": "#2F2418", "slate": "#6E5C49", "heroA": "#F5E9D8", "onAccent": "#FFFFFF"
+      },
+      "night": {
+        "indigo": "#578FBB", "indigoDark": "#22303B", "blue": "#77B4DF",
+        "teal": "#5BC0AA", "amber": "#E0A360",
+        "bg": "#14181C", "card": "#1C2228", "line": "#2B333B",
+        "ink": "#E9ECEF", "slate": "#A6AFB8", "heroA": "#1A2129", "onAccent": "#14181C"
+      }
+    },
+    "roles": {
+      "primary": { "value": "#5C4A82", "var": "--ofr-indigo", "usedFor": "primary buttons/CTA, h1 emphasis gradient start, feature accents; note: NOT the #ec3c97 seed — on the live site the pink is the Mum character colour" },
+      "primaryHover": { "value": "#463769", "var": "--ofr-indigo-d", "usedFor": "button hover; also the dark 'The app' section background" },
+      "secondary": { "value": "#1C6396", "var": "--ofr-blue", "usedFor": "secondary accent, focus outlines" },
+      "success": { "value": "#0F7362", "var": "--ofr-teal", "usedFor": "eyebrow default, in-app CTA chip" },
+      "reward": { "value": "#A4560C", "var": "--ofr-amber", "usedFor": "pebble-points / badges accent" },
+      "text": { "value": "#272B30", "var": "--ofr-ink" },
+      "textSecondary": { "value": "#5C6470", "var": "--ofr-slate" },
+      "background": { "value": "#FAFBFC", "var": "--ofr-bg" },
+      "surface": { "value": "#FFFFFF", "var": "--ofr-card" },
+      "border": { "value": "#E6E9ED", "var": "--ofr-line" }
+    },
+    "characters": {
+      "note": "bright character colours from the original artwork — constant, deliberately NOT theme vars",
+      "dad": "#9B5FC0",
+      "mum": "#EC3C97",
+      "finn": "#2196F0",
+      "ruby": "#F7941E",
+      "dark": "#1D1826",
+      "iris": "#2E7BD6",
+      "bow": "#E0509A",
+      "bowDark": "#B23A78",
+      "check": "#7ED8C8"
+    },
+    "seedPrimary": { "value": "#ec3c97", "note": "governing-doc brand-chip seed; on the live site it appears as the Mum drop colour and the faq.html accent (--a), not the UI primary" }
+  },
+  "typography": {
+    "display": { "family": "Bricolage Grotesque", "fallback": "sans-serif", "weights": [500, 600, 700], "opticalSize": "12..96", "usedFor": "h1/h2/h3, app-screen titles; line-height 1.12, letter-spacing -.01em" },
+    "body": { "family": "Inter", "fallback": "sans-serif", "weights": [400, 500, 600, 700], "usedFor": "body, buttons, nav; 16px base, line-height 1.65" },
+    "googleFonts": "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;500;600;700&display=swap",
+    "faqPageFallback": "'Segoe UI', system-ui, sans-serif (faq.html only — does not load webfonts)"
+  },
+  "radii": { "card": "18px", "menu": "14px", "iconChip": "12px", "button": "10px" },
+  "shadows": {
+    "small": "0 1px 2px rgba(30,35,42,.05), 0 4px 14px rgba(30,35,42,.06)",
+    "medium": "0 2px 4px rgba(30,35,42,.06), 0 14px 34px rgba(30,35,42,.10)"
+  },
+  "logos": {
+    "wordmark": { "file": "assets/logo-wordmark.webp", "format": "webp", "size": "640x226", "alpha": true, "usage": "nav (height 38px) and footer (height 32px); identical asset in both slots on the live site" },
+    "favicon32": { "file": "assets/favicon-32.png", "format": "png", "size": "32x32" },
+    "appleTouchIcon": { "file": "assets/apple-touch-icon-180.png", "format": "png", "size": "180x180" },
+    "heroScene": { "note": "the rainbow-drop family hero is not a bitmap — it is inline SVG + CSS ('.drop-scene', four animated water-drop characters on grey rocks) in index.html lines ~358-441" }
+  },
+  "give": {
+    "note": "First white-label Give brand (GIV-31): FULL Give catalogue OFR-branded, launch priority = family events, kindness registries, school/community PIF pools."
+  }
+}
