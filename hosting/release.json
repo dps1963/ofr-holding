@@ -1,0 +1,8 @@
+{
+  "service": "ofr-public-site",
+  "version": "1.0.0",
+  "domain": "ourfamilyrocks.com",
+  "staging_domain": "ofr-public.stg.bringmesunshinegroup.com",
+  "forms_contract": "v1",
+  "contact_client": "1.0.0"
+}
