@@ -3,6 +3,8 @@
     "faq.html",
     "index.html",
     "donate.html",
-    "full-landing/index.html"
-  ]
+    "full-landing/index.html",
+    "contact.html"
+  ],
+  "preserveWrapper": true
 }

@@ -1,23 +1,23 @@
 {
   "contractVersion": "1.0.0",
-  "release": "2026-09-15.1",
+  "release": "2026-09-18.1",
   "status": "adopted",
-  "effectiveFrom": "2026-09-15T08:09:44Z",
+  "effectiveFrom": "2026-09-18T01:56:36Z",
   "approval": {
     "by": "owner",
-    "recordedAt": "2026-09-15T08:09:44Z",
-    "instruction": "Accepted the legal pair with postal address; selected option 3: publish to production now, with outstanding items documented.",
-    "scope": "Central legal documents and independent public holding-site copies; no service, banking or payment activation."
+    "recordedAt": "2026-09-18T01:56:36Z",
+    "instruction": "Move the contact-message notice into main BMSG Terms and Privacy pages, link the contact form, and remove the separate BMSG staging contact-privacy page.",
+    "scope": "Consolidation of existing contact disclosures and receipt/screening explanation; staging deployment in this task. Production rollout remains separate."
   },
   "canonicalBase": "https://bringmesunshinegroup.com",
   "documents": {
     "privacy": {
       "id": "bmsg-privacy",
-      "sha256": "c70d92add042b759ac742ab218c24ba0b70b19643dfb7726e9b6e42a7d4ceecc"
+      "sha256": "70f4d0ae6fc82835b2aea6f146e29d07efe091da2a75b39adc417cd94f8b3da9"
     },
     "terms": {
       "id": "bmsg-terms",
-      "sha256": "55a701a3eae12aa15b37ebb18494fec4899ccaeb749ca0b48f89eccd5d2b5b06"
+      "sha256": "c950cff7cd965237ebad83a583b7a84717bf6d16bb639c9ebb974720a40c56d0"
     }
   },
   "assetIds": [
@@ -36,18 +36,19 @@
     {
       "path": "privacy.html",
       "kind": "privacy",
-      "sha256": "e7a6afc427e4523904baba0f60fd61349736d93b00b9a5e3b3394e53bf6e01a7"
+      "sha256": "b0bf754ba1de521245bc70bc8df4c08a9c24a3c69458bd608abb635dd907f8e4"
     },
     {
       "path": "terms.html",
       "kind": "terms",
-      "sha256": "fd276c2a0bba9001a77c62431bd46a103e9d2fd105e74d5b20540424bddb4b0e"
+      "sha256": "e82d0e0e5786a982a84543e43b38aa2537c85fcf0ced5ae1140a5e91f091c375"
     }
   ],
   "linkSurfaces": [
     "faq.html",
     "index.html",
     "donate.html",
-    "full-landing/index.html"
+    "full-landing/index.html",
+    "contact.html"
   ]
 }
