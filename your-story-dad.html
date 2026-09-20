@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Your Story Dad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Caveat:wght@600;700&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0E0C09; --night-warm:#1D150C; --soot:#0A0806;
+    --flame-deep:#C2571F; --flame:#E8873A; --flame-bright:#F6C35C;
+    --glow:#E8A34C; --ember:#D96C4F;
+    --cream:#F2E9DA; --cream-dim:#CBBFAC;
+    --paper:#F4EFE6; --ink:#241D14; --ink-soft:#5C5243;
+    --pounamu:#17715B; --pounamu-deep:#0E4A3C;
+    --line:#E2D8C6;
+    --fs:1rem;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{font-size:var(--fs)}
+  body{background:var(--night);color:var(--cream);font-family:'Inter',system-ui,sans-serif;line-height:1.65}
+  .kicker{font-family:'Space Grotesk',monospace;font-size:.75rem;letter-spacing:.26em;text-transform:uppercase}
+  h1,h2{font-family:'Bricolage Grotesque',sans-serif;letter-spacing:-.015em;line-height:1.1;text-wrap:balance}
+
+  /* watch button + film overlay */
+  .watch{display:inline-flex;flex-direction:column;align-items:center;gap:2px;margin-top:30px;
+    font-family:'Space Grotesk',monospace;font-weight:700;font-size:1rem;letter-spacing:.04em;
+    background:var(--glow);color:#33210B;border:0;border-radius:999px;padding:14px 30px;cursor:pointer;
+    box-shadow:0 8px 30px -8px rgba(232,163,76,.55)}
+  .watch span{font-weight:400;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+  .watch:hover{background:var(--flame-bright)}
+  .watch:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
+  .film{position:fixed;inset:0;z-index:100;background:#080604;display:none;overflow:hidden}
+  .film.on{display:block}
+  .film .cam{position:absolute;left:50%;top:50%;width:min(160vw,1600px);transform:translate(-50%,-50%);
+    transition:transform 6s ease-in-out;will-change:transform;line-height:0}
+  .film .cam svg{width:100%;height:auto}
+  .film .cap{position:absolute;left:50%;bottom:16vh;transform:translateX(-50%);z-index:3;width:min(88vw,760px);
+    text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+    font-size:clamp(1.4rem,4vw,2.6rem);line-height:1.2;color:var(--cream);text-wrap:balance;
+    opacity:0;transition:opacity 1.1s ease;text-shadow:0 2px 30px rgba(0,0,0,.8)}
+  .film .cap.hand{font-family:'Caveat',cursive;font-size:clamp(2.2rem,6vw,4rem);color:var(--flame-bright)}
+  .film .cap.show{opacity:1}
+  .film .cap small{display:block;margin-top:10px;font-family:'Inter',sans-serif;font-weight:400;
+    font-size:clamp(.85rem,1.6vw,1.05rem);color:var(--cream-dim)}
+  .film .end{position:absolute;inset:0;z-index:4;display:grid;place-items:center;background:#080604;
+    opacity:0;transition:opacity 1.4s ease;pointer-events:none;text-align:center}
+  .film .end.show{opacity:1}
+  .film .vignette{position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(0,0,0,.75) 100%)}
+  .film .fbar{position:absolute;left:0;bottom:0;height:4px;background:var(--glow);width:0;z-index:6}
+  .film .close{position:absolute;top:16px;right:16px;z-index:7;font-family:'Space Grotesk',monospace;
+    font-weight:700;font-size:.85rem;border:1px solid rgba(242,233,218,.4);background:rgba(8,6,4,.6);
+    color:var(--cream);border-radius:999px;padding:9px 16px;cursor:pointer}
+  .close:focus-visible{outline:3px solid var(--flame-bright);outline-offset:2px}
+  @media (prefers-reduced-motion: reduce){.film .cam{transition:none}}
+
+  /* text-size controls (estate accessibility standard) */
+  .a11y{position:fixed;top:14px;right:14px;z-index:50;display:flex;gap:6px}
+  .a11y button{font-family:'Space Grotesk',monospace;font-weight:700;font-size:13px;border:1px solid rgba(242,233,218,.35);background:rgba(14,12,9,.72);color:var(--cream);border-radius:8px;padding:6px 10px;cursor:pointer}
+  .a11y button:hover{border-color:var(--glow)}
+  .a11y button:focus-visible{outline:3px solid var(--flame-bright);outline-offset:2px}
+
+  /* ---------------- hero ---------------- */
+  .hero{position:relative;display:flex;flex-direction:column;min-height:96vh;
+    background:
+      radial-gradient(90% 65% at 68% 88%, rgba(232,163,76,.34) 0%, rgba(232,163,76,.10) 45%, transparent 72%),
+      linear-gradient(180deg,#0B0A0C 0%,#0E0C09 46%,#1D150C 100%)}
+  .hero-copy{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:9vh 24px 2vh;text-align:center}
+  .hero-copy .kicker{color:var(--glow);margin-bottom:22px}
+  .ask{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(2.9rem,8vw,5.6rem);line-height:1.05;color:var(--cream);text-wrap:balance}
+  .ask .dad{color:var(--flame-bright)}
+  .hero-sub{max-width:34rem;margin:26px auto 0;font-size:clamp(1rem,1.5vw,1.15rem);color:var(--cream-dim)}
+  .hero-sub b{color:var(--cream);font-weight:600}
+  .scene-wrap{margin-top:auto;line-height:0}
+  .scene-wrap svg{width:100%;height:auto;display:block}
+  .scroll-hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:3;color:rgba(242,233,218,.55);font-size:1.4rem;animation:drift 2.6s ease-in-out infinite}
+  @keyframes drift{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+
+  /* fire animation */
+  .flame{transform-box:fill-box;transform-origin:50% 100%}
+  .f1{animation:flick 1.7s ease-in-out infinite}
+  .f2{animation:flick 1.3s ease-in-out -.4s infinite}
+  .f3{animation:flick 1.9s ease-in-out -.9s infinite}
+  @keyframes flick{0%,100%{transform:scaleY(1) skewX(0deg)}30%{transform:scaleY(1.08) skewX(-2.4deg)}60%{transform:scaleY(.93) skewX(2deg)}80%{transform:scaleY(1.05) skewX(-1.2deg)}}
+  .glowpulse{animation:gp 3.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+  @keyframes gp{0%,100%{opacity:.85}50%{opacity:1}}
+  .emb{animation:rise2 var(--d,4s) linear var(--dl,0s) infinite;transform-box:fill-box;transform-origin:center}
+  @keyframes rise2{0%{transform:translateY(0);opacity:0}12%{opacity:.9}100%{transform:translateY(-150px) translateX(14px);opacity:0}}
+  @media (prefers-reduced-motion: reduce){.f1,.f2,.f3,.emb,.glowpulse,.scroll-hint{animation:none}.emb{opacity:.5}}
+
+  /* ---------------- paper body ---------------- */
+  .paper{background:var(--paper);color:var(--ink)}
+  .wrap{max-width:840px;margin:0 auto;padding:72px 24px}
+  .paper .kicker{color:var(--ember)}
+  .paper h2{font-size:clamp(1.7rem,3.4vw,2.4rem);margin:10px 0 20px;color:var(--ink)}
+  .lede{font-size:clamp(1.02rem,1.6vw,1.18rem);color:var(--ink-soft);max-width:60ch}
+  .lede b{color:var(--ink);font-weight:600}
+  .lede + .lede{margin-top:16px}
+
+  .divider{border:0;border-top:1px solid var(--line);margin:0}
+
+  /* numbered path */
+  .steps{display:grid;gap:34px;margin-top:38px;counter-reset:step}
+  .step{display:grid;grid-template-columns:64px 1fr;gap:20px;align-items:start}
+  .step .n{font-family:'Space Grotesk',monospace;font-weight:700;font-size:2rem;color:var(--ember);
+    border:2px solid var(--ember);border-radius:50%;width:56px;height:56px;display:grid;place-items:center}
+  .step h3{font-family:'Bricolage Grotesque',sans-serif;font-size:1.25rem;margin-bottom:6px}
+  .step p{color:var(--ink-soft);max-width:56ch}
+  .step p b{color:var(--ink);font-weight:600}
+
+  /* privacy card */
+  .promise{margin-top:8px;background:var(--pounamu-deep);color:#EAF3EF;border-radius:20px;padding:clamp(26px,4vw,40px)}
+  .promise .kicker{color:#9CD0BE}
+  .promise h2{color:#fff}
+  .promise p{color:#CDE4DA;max-width:58ch}
+  .promise p b{color:#fff;font-weight:600}
+  .promise ul{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+  .promise li{display:flex;gap:12px;align-items:baseline;color:#CDE4DA}
+  .promise li::before{content:"•";color:#E4A93C;font-weight:700}
+
+  /* distance band */
+  .distance{background:var(--night-warm);color:var(--cream);text-align:center}
+  .distance .wrap{padding:64px 24px}
+  .distance p.big{font-family:'Caveat',cursive;font-weight:600;font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.25;color:var(--flame-bright);max-width:26ch;margin:0 auto;text-wrap:balance}
+  .distance p.small{margin-top:14px;color:var(--cream-dim);font-size:.95rem}
+
+  /* footer */
+  footer{background:var(--night);color:var(--cream-dim);text-align:center;padding:56px 24px 64px}
+  .wordmark{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.5rem;color:var(--cream)}
+  .wordmark .rocks{color:var(--glow)}
+  .motto{font-family:'Caveat',cursive;font-weight:600;font-size:1.35rem;color:#5CB897;margin-top:2px}
+  footer .bmsg{margin-top:18px;font-size:.85rem}
+  footer .note{margin:26px auto 0;max-width:52ch;font-size:.8rem;color:#877c6b;border-top:1px solid rgba(242,233,218,.14);padding-top:18px}
+
+  @media(max-width:560px){
+    .step{grid-template-columns:48px 1fr;gap:14px}
+    .step .n{width:44px;height:44px;font-size:1.5rem}
+    .wrap{padding:56px 20px}
+  }
+</style>
+</head>
+<body>
+
+<div class="a11y" aria-label="Text size">
+  <button id="tminus" aria-label="Make text smaller">A−</button>
+  <button id="tplus" aria-label="Make text larger">A+</button>
+</div>
+
+<header class="hero">
+  <div class="hero-copy">
+    <p class="kicker">Our Family Rocks · a concept preview</p>
+    <h1 class="ask">“I want to have<br>your story, <span class="dad">Dad.</span>”</h1>
+    <p class="hero-sub">Every family has one voice they will wish they had kept.
+      <b>Your Story Dad</b> is a quiet place for Dad to tell his — one small story at a time —
+      for the only audience that matters: <b>his own family.</b></p>
+    <button class="watch" id="watchBtn">▶&nbsp; Watch the story <span>45 seconds, with sound</span></button>
+  </div>
+
+  <div class="scene-wrap" aria-hidden="true">
+    <svg viewBox="0 0 1200 520" preserveAspectRatio="xMidYMax meet" role="img" aria-label="A dad reading in an armchair beside a fire, a child listening on the rug">
+      <defs>
+        <radialGradient id="fireGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#F2A94F" stop-opacity=".55"/>
+          <stop offset="45%" stop-color="#E8873A" stop-opacity=".22"/>
+          <stop offset="100%" stop-color="#E8873A" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="hearthGlow" cx="50%" cy="60%" r="55%">
+          <stop offset="0%" stop-color="#F6C35C" stop-opacity=".9"/>
+          <stop offset="60%" stop-color="#E8873A" stop-opacity=".45"/>
+          <stop offset="100%" stop-color="#C2571F" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#2A1E10"/>
+          <stop offset="100%" stop-color="#17100A"/>
+        </linearGradient>
+        <linearGradient id="nightwin" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#131C2B"/>
+          <stop offset="100%" stop-color="#0D1420"/>
+        </linearGradient>
+      </defs>
+
+      <!-- floor -->
+      <rect x="0" y="428" width="1200" height="92" fill="url(#floor)"/>
+
+      <!-- window, far left: the night outside -->
+      <g>
+        <rect x="86" y="120" width="150" height="230" rx="8" fill="url(#nightwin)" stroke="#241C11" stroke-width="10"/>
+        <line x1="161" y1="126" x2="161" y2="344" stroke="#241C11" stroke-width="7"/>
+        <line x1="92" y1="235" x2="230" y2="235" stroke="#241C11" stroke-width="7"/>
+        <circle cx="200" cy="163" r="13" fill="#E9E4D2" opacity=".85"/>
+        <circle cx="196" cy="158" r="11" fill="#131C2B"/>
+        <circle cx="118" cy="150" r="2" fill="#E9E4D2" opacity=".7"/>
+        <circle cx="137" cy="187" r="1.6" fill="#E9E4D2" opacity=".55"/>
+        <circle cx="113" cy="212" r="1.6" fill="#E9E4D2" opacity=".5"/>
+        <rect x="78" y="350" width="166" height="10" rx="5" fill="#241C11"/>
+      </g>
+
+      <!-- big warm glow cast by the fire -->
+      <ellipse class="glowpulse" cx="800" cy="420" rx="430" ry="240" fill="url(#fireGlow)"/>
+
+      <!-- fireplace -->
+      <g>
+        <rect x="712" y="150" width="216" height="290" fill="#1F160C"/>
+        <rect x="700" y="255" width="240" height="14" rx="7" fill="#332412"/>
+        <rect x="722" y="269" width="196" height="171" rx="6" fill="#120C07"/>
+        <ellipse cx="820" cy="430" rx="110" ry="52" fill="url(#hearthGlow)" class="glowpulse"/>
+        <!-- logs -->
+        <rect x="762" y="408" width="116" height="16" rx="8" fill="#2A180B" transform="rotate(-7 820 416)"/>
+        <rect x="766" y="416" width="110" height="15" rx="7.5" fill="#231307" transform="rotate(6 820 424)"/>
+        <!-- flames -->
+        <g>
+          <path class="flame f1" fill="#C2571F" d="M786 424 C782 386 802 372 806 344 C822 372 836 380 838 402 C852 386 850 376 850 362 C866 384 872 402 868 420 C862 436 842 442 822 442 C804 442 790 436 786 424 Z"/>
+          <path class="flame f2" fill="#E8873A" d="M798 426 C796 398 810 388 814 366 C824 386 834 392 836 408 C844 398 844 390 843 380 C854 396 858 410 855 422 C850 434 836 438 822 438 C810 438 801 434 798 426 Z"/>
+          <path class="flame f3" fill="#F6C35C" d="M810 428 C809 410 818 402 820 388 C827 402 833 406 834 416 C839 410 839 404 838 398 C845 408 848 418 846 425 C843 432 834 434 825 434 C817 434 812 432 810 428 Z"/>
+        </g>
+        <!-- embers -->
+        <g fill="#F6C35C">
+          <circle class="emb" style="--d:3.8s;--dl:.2s" cx="806" cy="392" r="2.4"/>
+          <circle class="emb" style="--d:4.6s;--dl:1.4s" cx="830" cy="386" r="2"/>
+          <circle class="emb" style="--d:4.1s;--dl:2.3s" cx="846" cy="396" r="1.7" fill="#E8873A"/>
+          <circle class="emb" style="--d:5.2s;--dl:.8s" cx="818" cy="380" r="1.5" fill="#D96C4F"/>
+          <circle class="emb" style="--d:4.9s;--dl:3.1s" cx="838" cy="390" r="1.4"/>
+        </g>
+        <!-- mantel keepsakes -->
+        <g fill="#0C0906">
+          <rect x="746" y="228" width="20" height="27" rx="2"/>
+          <rect x="774" y="220" width="26" height="35" rx="2"/>
+          <circle cx="884" cy="240" r="14"/>
+          <rect x="872" y="250" width="24" height="6" rx="3"/>
+        </g>
+        <!-- chimney breast shadow edges -->
+        <rect x="712" y="150" width="10" height="290" fill="#150E07"/>
+        <rect x="918" y="150" width="10" height="290" fill="#150E07"/>
+      </g>
+
+      <!-- rug -->
+      <ellipse cx="560" cy="470" rx="270" ry="34" fill="#2B160E"/>
+      <ellipse cx="560" cy="470" rx="210" ry="25" fill="#331B11"/>
+
+      <!-- armchair + Dad, silhouette rim-lit by the fire -->
+      <g>
+        <path d="M382 452 L382 300 Q382 262 420 260 L438 260 Q446 216 492 214 L520 214 Q560 216 566 258 L566 300 L590 300 Q606 300 606 318 L606 420 Q606 452 574 452 Z" fill="#0B0806"/>
+        <path d="M566 258 Q560 216 520 214 L516 214 Q552 220 558 260 L558 300 L566 300 Z" fill="#3A2413"/>
+        <!-- dad's head + shoulder above the chair arm, facing the fire -->
+        <circle cx="530" cy="196" r="26" fill="#0B0806"/>
+        <path d="M556 196 A26 26 0 0 1 534 222 L552 222 A26 26 0 0 0 556 196 Z" fill="#3A2413"/>
+        <!-- his arm and the open book, caught in firelight -->
+        <path d="M556 250 Q596 244 618 268 L610 282 Q590 262 556 268 Z" fill="#0B0806"/>
+        <path d="M604 258 L648 246 L652 258 L610 272 Z" fill="#C99A5B"/>
+        <path d="M648 246 L688 254 L684 266 L652 258 Z" fill="#B4854A"/>
+        <!-- chair legs -->
+        <rect x="398" y="452" width="14" height="20" rx="4" fill="#0B0806"/>
+        <rect x="576" y="452" width="14" height="20" rx="4" fill="#0B0806"/>
+      </g>
+
+      <!-- child on the rug, listening -->
+      <g>
+        <circle cx="668" cy="404" r="17" fill="#0B0806"/>
+        <path d="M685 404 A17 17 0 0 1 671 421 L683 421 A17 17 0 0 0 685 404 Z" fill="#3A2413"/>
+        <path d="M644 466 Q646 424 668 422 Q690 424 694 448 Q702 462 688 466 Q666 472 644 466 Z" fill="#0B0806"/>
+        <path d="M690 444 Q694 452 692 460 L698 458 Q700 450 694 444 Z" fill="#3A2413"/>
+      </g>
+
+      <!-- mug steaming on the floor by the chair -->
+      <g>
+        <rect x="612" y="436" width="22" height="24" rx="4" fill="#0B0806"/>
+        <path d="M634 441 q10 3 0 12" stroke="#0B0806" stroke-width="4" fill="none"/>
+        <path class="emb" style="--d:5.6s;--dl:1s" d="M620 428 q4 -8 0 -14" stroke="#8E9490" stroke-width="2" fill="none" opacity=".4"/>
+      </g>
+    </svg>
+  </div>
+  <div class="scroll-hint">▾</div>
+</header>
+
+<main>
+  <section class="paper">
+    <div class="wrap">
+      <p class="kicker">The moment we're building for</p>
+      <h2>Every dad says “one day I'll write it all down.”</h2>
+      <p class="lede">The stories are all there — how he met Mum, the job that went sideways,
+        the town he grew up in, the things he'd do all over again. They come out beside a fire,
+        on a long drive, at the end of a birthday dinner. And then everyone goes home, and they're gone.</p>
+      <p class="lede"><b>Your Story Dad catches them</b> — in his own words, in his own voice —
+        before “one day” runs out of days.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="paper">
+    <div class="wrap">
+      <p class="kicker">How it will work</p>
+      <h2>Four small steps, no homework.</h2>
+      <div class="steps">
+        <div class="step"><span class="n">1</span>
+          <div><h3>Just catch the thought</h3>
+          <p>When a memory visits — on a walk, in the car, by the fire — Dad says it out loud
+          or types a few lines. <b>No title, no date, no pressure.</b> The thought is kept the moment it's caught.</p></div></div>
+        <div class="step"><span class="n">2</span>
+          <div><h3>Thoughts grow into chapters</h3>
+          <p>Little recordings and notes gather into chapters — childhood, first jobs, us kids —
+          that Dad can retell, reorder and polish whenever he likes. <b>It becomes his book.</b></p></div></div>
+        <div class="step"><span class="n">3</span>
+          <div><h3>Dad chooses the circle</h3>
+          <p>The book is <b>private from the first word.</b> Dad picks exactly who may open it —
+          his children, and whoever else he names. Nobody is in the room unless he invited them.</p></div></div>
+        <div class="step"><span class="n">4</span>
+          <div><h3>The stories arrive home</h3>
+          <p>When a chapter is ready, the family hears it <b>in Dad's own voice</b> — whether the kids
+          are in the next room or on the other side of the world.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="paper">
+    <div class="wrap">
+      <div class="promise">
+        <p class="kicker">And it stays in the family</p>
+        <h2>His words are for his people, not for a feed.</h2>
+        <p>This is the opposite of social media. There is no public page, no likes, no strangers, no ads.</p>
+        <ul>
+          <li><b>Private by default</b> — every story starts visible to Dad alone.</li>
+          <li><b>Family-only audience</b> — each listener is someone Dad chose by name.</li>
+          <li><b>Nothing leaves the family</b> unless Dad himself says so.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="distance">
+    <div class="wrap">
+      <p class="big">From a fireside in New Zealand to a kitchen table in Scotland —
+      a story told once is a story kept for good.</p>
+      <p class="small">Distance is exactly why we're building this.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wordmark">OurFamily<span class="rocks">Rocks</span></div>
+  <div class="motto">always be kind</div>
+  <p class="bmsg">Your Story Dad · a coming project from OurFamilyRocks.com · a member of BringMeSunshineGroup.com</p>
+  <p class="note">This is an early concept preview shared with family and friends — the product is in design,
+  and the details on this page will change as it grows.</p>
+</footer>
+
+<div class="film" id="film" role="dialog" aria-label="Your Story Dad — short film">
+  <div class="cam" id="cam"></div>
+  <div class="vignette"></div>
+  <p class="cap" id="cap"></p>
+  <div class="end" id="end">
+    <div>
+      <div class="wordmark" style="font-size:2rem">OurFamily<span class="rocks">Rocks</span></div>
+      <div class="motto" style="font-size:1.6rem">always be kind</div>
+      <p style="margin-top:14px;color:var(--cream-dim);font-family:'Space Grotesk',monospace;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase">Your Story Dad · coming</p>
+    </div>
+  </div>
+  <div class="fbar" id="fbar"></div>
+  <button class="close" id="filmClose">✕ Close</button>
+</div>
+
+<script>
+  (function(){
+    var size=1.0;
+    function apply(){document.documentElement.style.setProperty('--fs',size+'rem');}
+    document.getElementById('tplus').addEventListener('click',function(){size=Math.min(1.35,size+0.08);apply();});
+    document.getElementById('tminus').addEventListener('click',function(){size=Math.max(0.85,size-0.08);apply();});
+  })();
+
+  /* ---------------- the 45-second film ---------------- */
+  (function(){
+    var film=document.getElementById('film'), cam=document.getElementById('cam'),
+        cap=document.getElementById('cap'), end=document.getElementById('end'),
+        fbar=document.getElementById('fbar'),
+        reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var timers=[], raf=null, audio=null;
+
+    /* camera positions: [scale, x%, y%] of the scene svg */
+    var SCENES=[
+      {t:5500, cam:[1.05,0,-4],  cls:'',     html:'It starts with a question<br>every family asks eventually.'},
+      {t:6000, cam:[1.9,-14,-26],cls:'hand', html:'&ldquo;I want to have your story, Dad.&rdquo;'},
+      {t:6500, cam:[1.6,4,-18],  cls:'',     html:'The stories are all there.<small>How he met Mum. The job that went sideways. The town he grew up in.</small>'},
+      {t:6000, cam:[2.1,-22,-10],cls:'',     html:'Your Story Dad keeps them —<br>in his own voice.<small>He speaks a memory when it visits. It becomes a chapter of his book.</small>'},
+      {t:6000, cam:[1.3,0,-12],  cls:'',     html:'Private. Family only.<small>No feed, no strangers, no ads. Nothing leaves the family unless Dad says so.</small>'},
+      {t:6500, cam:[1.08,0,-2],  cls:'hand', html:'From New Zealand to Scotland —<br>a story told once is kept for good.'},
+      {t:5500, cam:[1.02,0,0],   cls:'',     html:'', end:true}
+    ];
+
+    /* fire-crackle soundtrack — synthesised live, no files */
+    function makeAudio(){
+      try{
+        var ctx=new (window.AudioContext||window.webkitAudioContext)();
+        var master=ctx.createGain(); master.gain.value=.5; master.connect(ctx.destination);
+        /* warm bed: looped brown noise through a lowpass */
+        var len=ctx.sampleRate*2, buf=ctx.createBuffer(1,len,ctx.sampleRate), d=buf.getChannelData(0), last=0;
+        for(var i=0;i<len;i++){var w=Math.random()*2-1; d[i]=(last+.02*w)/1.02; last=d[i]; d[i]*=3.5;}
+        var bed=ctx.createBufferSource(); bed.buffer=buf; bed.loop=true;
+        var lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=300;
+        var bg=ctx.createGain(); bg.gain.value=.16;
+        bed.connect(lp); lp.connect(bg); bg.connect(master); bed.start();
+        /* crackle pops */
+        var popTimer=setInterval(function(){
+          if(ctx.state!=='running')return;
+          var n=Math.random()<.35?2:1;
+          for(var k=0;k<n;k++){
+            var t=ctx.currentTime+Math.random()*.12;
+            var pl=Math.floor(ctx.sampleRate*.04), pb=ctx.createBuffer(1,pl,ctx.sampleRate), pd=pb.getChannelData(0);
+            for(var j=0;j<pl;j++)pd[j]=(Math.random()*2-1)*Math.pow(1-j/pl,2);
+            var s=ctx.createBufferSource(); s.buffer=pb;
+            var bpf=ctx.createBiquadFilter(); bpf.type='bandpass';
+            bpf.frequency.value=900+Math.random()*2600; bpf.Q.value=1.4;
+            var g=ctx.createGain(); g.gain.setValueAtTime(.12+Math.random()*.2,t);
+            g.gain.exponentialRampToValueAtTime(.001,t+.05);
+            s.connect(bpf); bpf.connect(g); g.connect(master); s.start(t);
+          }
+        }, 200);
+        return {ctx:ctx, stop:function(){clearInterval(popTimer);
+          try{master.gain.setTargetAtTime(0.0001,ctx.currentTime,.15);}catch(e){}
+          setTimeout(function(){try{ctx.close()}catch(e){}},600);}};
+      }catch(e){return null}
+    }
+
+    function setCam(c){cam.style.transform='translate(-50%,-50%) translate('+c[1]+'%,'+c[2]+'%) scale('+c[0]+')';}
+    function stop(){
+      timers.forEach(clearTimeout); timers=[]; if(raf)cancelAnimationFrame(raf);
+      if(audio){audio.stop(); audio=null;}
+      film.classList.remove('on'); end.classList.remove('show'); cap.classList.remove('show');
+      document.body.style.overflow='';
+      document.getElementById('watchBtn').focus();
+    }
+    function play(){
+      /* the film reuses the hero scene, so the picture always matches the page */
+      cam.innerHTML=document.querySelector('.scene-wrap svg').outerHTML;
+      film.classList.add('on'); document.body.style.overflow='hidden';
+      end.classList.remove('show');
+      audio=makeAudio();
+      var total=SCENES.reduce(function(s,x){return s+x.t},0), acc=0;
+      SCENES.forEach(function(sc,i){
+        timers.push(setTimeout(function(){
+          cap.classList.remove('show');
+          if(sc.end){end.classList.add('show');return;}
+          setCam(sc.cam); /* 6s ease glides from wherever the camera is — one continuous take */
+          timers.push(setTimeout(function(){
+            cap.className='cap '+sc.cls; cap.innerHTML=sc.html; cap.classList.add('show');
+          }, i===0?600:900));
+        },acc));
+        acc+=sc.t;
+      });
+      timers.push(setTimeout(stop, total+2500));
+      var t0=performance.now();
+      (function tick(now){
+        var p=Math.min((now-t0)/total,1);
+        fbar.style.width=(p*100)+'%';
+        if(p<1&&film.classList.contains('on'))raf=requestAnimationFrame(tick);
+      })(t0);
+    }
+    document.getElementById('watchBtn').addEventListener('click',play);
+    document.getElementById('filmClose').addEventListener('click',stop);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&film.classList.contains('on'))stop();});
+  })();
+</script>
+</body>
+</html>
