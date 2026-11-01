@@ -8,11 +8,11 @@
   "documents": {
     "privacy": {
       "id": "bmsg-privacy",
-      "sha256": "85cab019ac0ec9dc667952f57d88fe97a31ca48373b3380b340c4139d1995ae6"
+      "sha256": "84ed87e36b8e2639ddd8f8019fcebd7af5d63b41d75fdf7a0fb52f433634b7b2"
     },
     "terms": {
       "id": "bmsg-terms",
-      "sha256": "56da9e5aa04e002c8f64fab4105aeb126b8cdd32c051491d99e91ba1a86a29db"
+      "sha256": "cfbf5dd0db59615d0b8aef5fd180392d38a215258d2d25826736bee1a7f9c4be"
     }
   },
   "assetIds": [
@@ -30,12 +30,12 @@
     {
       "path": "privacy.html",
       "kind": "privacy",
-      "sha256": "7ce5c2b99c85f3200fb01c86ba4698e2746216bfc173c576ba4c794a66e92614"
+      "sha256": "2533d6e677ea94a4e947ae8e8b84232c6902f88f7604cbc227a3fb1c5c0dcdde"
     },
     {
       "path": "terms.html",
       "kind": "terms",
-      "sha256": "b77f73a70b634ecff1cb3e8e0a1f1a2e677cf1af5538778c423e7fc9800f6750"
+      "sha256": "f91aa7b2c1ef0916cd5eb09b2856c4c5832c7ac88a0848e07f1e2d6f213de7df"
     }
   ],
   "linkSurfaces": [
