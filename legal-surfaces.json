@@ -6,5 +6,6 @@
     "full-landing/index.html",
     "contact.html"
   ],
-  "preserveWrapper": true
+  "fold": true,
+  "redirectConfig": "hosting/default.conf.template"
 }
