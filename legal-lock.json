@@ -1,23 +1,18 @@
 {
   "contractVersion": "1.0.0",
-  "release": "2026-09-18.1",
-  "status": "adopted",
-  "effectiveFrom": "2026-09-18T01:56:36Z",
-  "approval": {
-    "by": "owner",
-    "recordedAt": "2026-09-18T01:56:36Z",
-    "instruction": "Move the contact-message notice into main BMSG Terms and Privacy pages, link the contact form, and remove the separate BMSG staging contact-privacy page.",
-    "scope": "Consolidation of existing contact disclosures and receipt/screening explanation; staging deployment in this task. Production rollout remains separate."
-  },
+  "release": "2026-11-01.2",
+  "status": "draft",
+  "effectiveFrom": null,
+  "approval": null,
   "canonicalBase": "https://bringmesunshinegroup.com",
   "documents": {
     "privacy": {
       "id": "bmsg-privacy",
-      "sha256": "70f4d0ae6fc82835b2aea6f146e29d07efe091da2a75b39adc417cd94f8b3da9"
+      "sha256": "85cab019ac0ec9dc667952f57d88fe97a31ca48373b3380b340c4139d1995ae6"
     },
     "terms": {
       "id": "bmsg-terms",
-      "sha256": "c950cff7cd965237ebad83a583b7a84717bf6d16bb639c9ebb974720a40c56d0"
+      "sha256": "56da9e5aa04e002c8f64fab4105aeb126b8cdd32c051491d99e91ba1a86a29db"
     }
   },
   "assetIds": [
@@ -25,8 +20,7 @@
   ],
   "assetSchedules": {
     "ofr-holding": [
-      "WEB",
-      "GIVE"
+      "WEB"
     ]
   },
   "locales": [
@@ -36,12 +30,12 @@
     {
       "path": "privacy.html",
       "kind": "privacy",
-      "sha256": "251517c0608277e60a956c9c0ebf780e0cd8570dd0c004a1f6ce562c9fd4d9d2"
+      "sha256": "7ce5c2b99c85f3200fb01c86ba4698e2746216bfc173c576ba4c794a66e92614"
     },
     {
       "path": "terms.html",
       "kind": "terms",
-      "sha256": "b62895a863c381a0e1a14f4a3c7f53f11ac6b17d64760f0058a22b81a1559201"
+      "sha256": "b77f73a70b634ecff1cb3e8e0a1f1a2e677cf1af5538778c423e7fc9800f6750"
     }
   ],
   "linkSurfaces": [
