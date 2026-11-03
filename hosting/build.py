@@ -10,7 +10,7 @@ if __import__('os').environ.get('LEGAL_DRAFT_PREVIEW')!='1':
 out=root/'public'
 if out.exists():raise SystemExit('public already exists; use a clean checkout for an immutable build')
 out.mkdir()
-allowed={'.html','.css','.js','.json','.xml','.txt','.png','.jpg','.jpeg','.webp','.svg','.ico','.woff','.woff2','.ttf','.mp4','.webmanifest'}
+allowed={'.html','.css','.js','.json','.xml','.txt','.png','.jpg','.jpeg','.webp','.svg','.ico','.woff','.woff2','.ttf','.mp4','.webm','.webmanifest'}
 for source in root.rglob('*'):
  relative=source.relative_to(root)
  if any(part.startswith('.') or part in {'public','hosting','node_modules'} for part in relative.parts):continue

@@ -4,7 +4,8 @@
     "index.html",
     "donate.html",
     "full-landing/index.html",
-    "contact.html"
+    "contact.html",
+    "your-story.html"
   ],
   "fold": true,
   "redirectConfig": "hosting/default.conf.template"

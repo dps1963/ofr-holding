@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Your Story — record your life story and turn it into a book</title>
+<meta name="description" content="Your Story by Our Family Rocks: record and write your life story with voice, prompts and questions, then turn it into a digital or printed book. Prices in NZ$.">
+<link rel="icon" href="brand/assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="brand/assets/apple-touch-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://ourfamilyrocks.com/your-story.html">
+<style>
+  /* Brand tokens from brand/tokens.css (Ocean theme; Night theme for dark). Every text/background pair below is
+     WCAG AAA (7:1 or better) in both schemes: muted text is #4A5159 rather than the AA-only slate, the eyebrow uses
+     teal-d, headline accent uses blue-d. */
+  :root{
+    --indigo:#5C4A82; --indigo-d:#463769; --blue-d:#154C74; --teal-d:#0B5A4D; --amber:#A4560C;
+    --ink:#272B30; --muted:#4A5159; --bg:#FAFBFC; --line:#E6E9ED; --card:#ffffff; --hero-a:#F3F6F9;
+    --on-accent:#ffffff; --price-bg:#F3F6F9; --r:18px;
+    --shadow-s:0 1px 2px rgba(30,35,42,.05),0 4px 14px rgba(30,35,42,.06);
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --indigo:#77B4DF; --indigo-d:#A3CDEB; --blue-d:#77B4DF; --teal-d:#5BC0AA; --amber:#E0A360;
+      --ink:#E9ECEF; --muted:#A6AFB8; --bg:#14181C; --line:#2B333B; --card:#1C2228; --hero-a:#1A2129;
+      --on-accent:#14181C; --price-bg:#182028;
+      --shadow-s:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);
+      color-scheme:dark;
+    }
+  }
+  *{box-sizing:border-box;margin:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:var(--ink);line-height:1.65;background:var(--bg);
+       background-image:linear-gradient(180deg,var(--hero-a) 0%,var(--bg) 480px);min-height:100vh;padding:20px 16px 40px}
+  a{color:var(--indigo);text-decoration:underline;text-underline-offset:.15em;text-decoration-thickness:1px}
+  a:hover{color:var(--indigo-d);text-decoration-thickness:2px}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--indigo);outline-offset:3px;border-radius:4px}
+  .wrap{max-width:60rem;margin:0 auto}
+  header.top{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;margin-bottom:28px}
+  .home{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:inherit}
+  .logo{width:min(200px,55vw);height:auto}
+  @media (prefers-color-scheme: dark){.logo{background:#F3F6F9;border-radius:12px;padding:8px 12px}}
+  .kind-tag{display:block;font-family:'Caveat',cursive;font-size:1.3rem;font-weight:500;letter-spacing:.01em;color:var(--teal-d);margin-top:-4px}
+  nav.primary{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;font-weight:600}
+  nav.primary a{text-decoration:none;padding:6px 2px}
+  nav.primary a:hover{text-decoration:underline}
+  .eyebrow{color:var(--teal-d);font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase}
+  h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;line-height:1.14;text-wrap:balance;color:var(--ink)}
+  h1{font-size:clamp(1.9rem,6.5vw,3rem);font-weight:700;margin:8px 0 14px}
+  h1 .b{color:var(--blue-d)} h1 .t{color:var(--teal-d)}
+  h2{font-size:clamp(1.4rem,4.5vw,1.9rem);font-weight:700;margin:0 0 12px}
+  h3{font-size:1.2rem;font-weight:700;margin:0 0 6px}
+  .hero{text-align:center;max-width:46rem;margin:0 auto 36px}
+  .hero p{color:var(--muted);font-size:1.08rem;max-width:52ch;margin:0 auto}
+  section.block{margin:0 0 34px}
+  .lede{color:var(--muted);max-width:60ch}
+  .steps{list-style:none;padding:0;display:grid;gap:14px;margin-top:16px}
+  .steps li{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-s);padding:18px 18px 18px 60px;position:relative}
+  .steps li::before{content:counter(step);counter-increment:step;position:absolute;left:18px;top:18px;width:30px;height:30px;border-radius:50%;
+       background:var(--indigo);color:var(--on-accent);font-weight:700;display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif}
+  .steps{counter-reset:step}
+  .steps p{color:var(--muted);margin-top:2px}
+  .products{display:grid;gap:16px;margin-top:16px}
+  .product{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-s);padding:20px;display:flex;flex-direction:column;gap:10px}
+  .product .kind{color:var(--teal-d);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase}
+  .price{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.9rem;line-height:1.1}
+  .price small{display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:.9rem;color:var(--muted);margin-top:4px}
+  .product ul{margin:0;padding-left:1.15rem;color:var(--muted)}
+  .product li{margin:4px 0}
+  .product ul li::marker{color:var(--teal-d)}
+  .pricelist{background:var(--price-bg);border-radius:12px;padding:12px 14px;display:grid;gap:6px}
+  .pricelist div{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .pricelist dd{margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.15rem}
+  .note{color:var(--muted);font-size:.95rem}
+  .facts{display:grid;gap:14px;margin-top:16px}
+  .fact{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-s);padding:18px}
+  .fact p{color:var(--muted)}
+  .fact p+p{margin-top:8px}
+  .fact ul{color:var(--muted);padding-left:1.15rem;margin-top:6px}
+  blockquote{margin:10px 0 0;padding:10px 14px;border-left:4px solid var(--teal-d);color:var(--ink);background:var(--price-bg);border-radius:0 10px 10px 0;font-size:.98rem}
+  .cta{display:inline-flex;align-items:center;justify-content:center;background:var(--indigo);color:var(--on-accent);border-radius:999px;padding:.75rem 1.5rem;font-weight:700;text-decoration:none;min-height:44px}
+  .cta:hover{background:var(--indigo-d);color:var(--on-accent);text-decoration:none}
+  .contact-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:12px}
+  footer{margin-top:44px;color:var(--muted);font-size:.9rem;text-align:center;padding-top:18px;border-top:1px solid var(--line)}
+  footer a{color:var(--indigo);font-weight:600}
+  footer nav{margin-top:6px}
+  @media (min-width:700px){
+    body{padding:32px 24px 56px}
+    header.top{flex-direction:row;justify-content:space-between;text-align:left}
+    .home{align-items:flex-start}
+    .products{grid-template-columns:repeat(3,1fr)}
+    .facts{grid-template-columns:repeat(2,1fr)}
+    .steps{grid-template-columns:repeat(3,1fr)}
+    .steps li{padding:64px 18px 18px}
+  }
+  /* ---- Hero layout: words beside the story animation on wide screens ---- */
+  .hero-grid{display:grid;gap:22px;align-items:center;max-width:60rem;margin:0 auto 36px}
+  @media (min-width:900px){
+    .hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:36px}
+    .hero-grid .hero{text-align:left;margin:0}
+    .hero-grid .hero p{margin:0}
+  }
+  /* ---- Founder story ---- */
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-s);padding:22px 22px 20px;max-width:46rem;margin:0 auto}
+  .story p{margin-top:10px}
+  .story p:first-of-type{margin-top:0}
+  .story .ask{font-family:'Caveat',cursive;font-size:1.5rem;font-weight:600;color:var(--blue-d);font-style:normal}
+  .story .sign{margin-top:14px;color:var(--muted);font-size:.95rem}
+  /* ---- The story video (assets/ys-story.mp4 + .webm, silent, poster assets/ys-story-poster.jpg).
+     Until the files are published the poster is all that shows; the script never autoplays under
+     prefers-reduced-motion, and the native controls give everyone play/pause (WCAG 2.2.2). ---- */
+  .ysv{margin:0;max-width:34rem;margin-inline:auto;width:100%}
+  .ysv .frame{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-s);padding:8px}
+  .ysv video{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:calc(var(--r) - 6px);background:var(--hero-a)}
+  .ysv figcaption{color:var(--muted);font-size:.92rem;margin-top:8px}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <a class="home" href="https://ourfamilyrocks.com/">
+    <img class="logo" src="brand/assets/logo-wordmark.webp" alt="Our Family Rocks" width="640" height="226">
+    <span id="kindTag" class="kind-tag">always be kind</span>
+  </a>
+  <nav class="primary" aria-label="Primary">
+    <a href="https://ourfamilyrocks.com/">Home</a>
+    <a href="#prices">Prices</a>
+    <a href="#delivery">Delivery</a>
+    <a href="#refunds">Refunds</a>
+    <a href="contact.html">Get in touch</a>
+  </nav>
+</header>
+
+<main id="content">
+
+<div class="hero-grid">
+<section class="hero">
+  <div class="eyebrow">Your Story</div>
+  <h1>Your life story, <span class="b">in your own voice</span> — <span class="t">made into a book to keep.</span></h1>
+  <p>Your Story helps you tell the story of your life, one memory at a time. Talk, answer gentle prompts and questions, add photos,
+  and arrange it all into chapters. When you are ready, turn it into a digital book or a printed book to keep and to pass on.</p>
+</section>
+
+<figure class="ysv">
+  <div class="frame">
+  <video id="ysv" poster="assets/ys-story-poster.jpg" muted playsinline loop controls preload="none" width="1280" height="720"
+         aria-describedby="ysv-d">
+    <source src="assets/ys-story.webm" type="video/webm">
+    <source src="assets/ys-story.mp4" type="video/mp4">
+  </video>
+  </div>
+  <figcaption>From one question — “Tell me your story, Dad” — to a book in the hands of the next generation.
+    <span id="ysv-d" hidden>Silent video: a wrapped gift opens to reveal a fill-in book, given with one request: “Tell me your story, Dad”. Inside, the pages are mostly blank and a pen hovers, not knowing where to start. Then a voice is heard: a sound wave flows onto the pages and becomes lines of writing. The pages become a finished hardcover book called Your Story, which an older hand passes to a younger hand.</span>
+  </figcaption>
+</figure>
+</div>
+
+<section class="block" aria-labelledby="why">
+  <div class="story">
+    <h2 id="why">Why we made Your Story</h2>
+    <p>My daughter gave me a fill-in journal, and with it one simple request:
+    <q class="ask">Tell me your story, Dad.</q></p>
+    <p>I was touched, and I meant to do it. Then I opened it and found page after page of blank lines. Sitting down to write
+    felt daunting. Where do you start? What is worth putting down? I put the journal down, and somehow never picked it up again.</p>
+    <p>Yet talking has always come easily to me. Ask me a question and the words come. Talking was never the problem.
+    Writing was.</p>
+    <p>That is the whole idea behind Your Story. You answer a question by speaking, as if the person asking were sitting across
+    the table. Your spoken words are turned into text you can edit. You tidy them, add a photo or two, and chapter by chapter
+    a book takes shape: one your family can hold, read and keep.</p>
+    <p class="sign">— Dave, founder, Bring Me Sunshine Group</p>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="how">
+  <h2 id="how">How it works</h2>
+  <p class="lede">Three gentle steps, at your own pace. Start with a single memory, stop whenever you like, and come back when you are ready.</p>
+  <ol class="steps">
+    <li><h3>Record</h3><p>Just talk. Answer questions and prompts by speaking or typing. Your recordings are written down for you, and you can add photos and short videos.</p></li>
+    <li><h3>Write and arrange</h3><p>Edit the words, choose what goes in, and arrange your memories into chapters, with your photos alongside.</p></li>
+    <li><h3>Make your book</h3><p>Preview your finished book, then buy it as a digital book (PDF) or have it printed and posted to you.</p></li>
+  </ol>
+</section>
+
+<section class="block" id="prices" aria-labelledby="prices-h">
+  <h2 id="prices-h">Products and prices</h2>
+  <p class="lede">Every purchase is a single one-off payment. There are no subscriptions, no recurring charges and no donations.</p>
+  <div class="products">
+    <article class="product">
+      <div class="kind">Digital book</div>
+      <div class="price">NZ$129<small>one-off payment</small></div>
+      <p><strong>Your finished book as a PDF.</strong></p>
+      <ul>
+        <li>Your whole story: chapters, words and photos, laid out as a book</li>
+        <li>Download it, keep it and share it with your family</li>
+        <li>Print-ready, so you can also print it yourself</li>
+      </ul>
+    </article>
+    <article class="product">
+      <div class="kind">Printed book</div>
+      <div class="price">from NZ$209<small>per copy, one-off payment, plus shipping</small></div>
+      <p><strong>Your book, professionally printed and posted to you.</strong></p>
+      <dl class="pricelist">
+        <div><dt>Hardcover</dt><dd>NZ$299</dd></div>
+        <div><dt>Softcover</dt><dd>NZ$209</dd></div>
+      </dl>
+      <ul>
+        <li>Choose hardcover or softcover and how many copies</li>
+        <li>Shipping is extra and is shown at checkout before you pay</li>
+      </ul>
+    </article>
+    <article class="product">
+      <div class="kind">Gift</div>
+      <div class="price">NZ$129<small>one-off payment</small></div>
+      <p><strong>Buy Your Story for someone else, including their digital book (PDF).</strong></p>
+      <ul>
+        <li>They receive an email with your personal message and a link</li>
+        <li>When they accept, their own Your Story is set up for them to record, write and make their book</li>
+        <li>The gift includes their digital book (PDF). Printed copies cost extra</li>
+        <li>You can choose to send it now or on a date you pick</li>
+      </ul>
+    </article>
+  </div>
+  <p class="note" style="margin-top:14px">Prices are in New Zealand dollars (NZ$). If you pay in another currency, your card provider converts it.
+  Payments are taken by card through our payment provider; we never see or store your card details.</p>
+  <p class="note" style="margin-top:8px">Your Story is currently available by invitation. Recording and writing are free; you pay only when you buy a book
+  or a gift. Buying happens inside the Your Story app after you sign in with your BMSG account. The total, including any shipping, is shown before you confirm.</p>
+</section>
+
+<section class="block" id="delivery" aria-labelledby="delivery-h">
+  <h2 id="delivery-h">How your purchase is delivered</h2>
+  <div class="facts">
+    <div class="fact">
+      <h3>Digital book</h3>
+      <p>As soon as your payment is confirmed, your PDF is made and a download link appears in your Your Story account.
+      You can download it again later from the same place.</p>
+    </div>
+    <div class="fact">
+      <h3>Printed book</h3>
+      <p>Your book is printed and posted to the address you give at checkout. Shipping is charged per order, with one flat rate for
+      New Zealand addresses and a higher flat rate for overseas addresses (currently NZ$15 within New Zealand and NZ$30 overseas).
+      The amount is shown at checkout before you pay.</p>
+      <p>Delivery times vary by destination. If you want an estimate before you order, email
+      <a href="mailto:info@bringmesunshinegroup.com">info@bringmesunshinegroup.com</a>.</p>
+    </div>
+    <div class="fact">
+      <h3>Gift</h3>
+      <p>Once your payment is confirmed, the gift email is sent to the person you chose (or on the date you picked).
+      The link in the email works for 60 days. You can see whether it has been opened and accepted from your Gifts list.</p>
+    </div>
+    <div class="fact">
+      <h3>Who you are buying from</h3>
+      <p>Your Story books and gifts are sold by BringMeSunshineGroup.com (BMSG), a New Zealand business.
+      Our Family Rocks and Your Story are BMSG brands.</p>
+      <p>Postal address: BringMeSunshineGroup.com, PO Box 243, Cambridge 3450, New Zealand.
+      Email: <a href="mailto:info@bringmesunshinegroup.com">info@bringmesunshinegroup.com</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="refunds" aria-labelledby="refunds-h">
+  <h2 id="refunds-h">Refunds and cancellations</h2>
+  <div class="fact">
+    <p>Purchases of Your Story books and gifts are covered by the
+    <a href="https://bringmesunshinegroup.com/terms.html">BMSG Terms &amp; Conditions</a>. Before you pay, the checkout shows the
+    seller, what you are buying, the currency and the total price, including any shipping.</p>
+    <p>In short:</p>
+    <ul>
+      <li><strong>Digital book (PDF):</strong> no change-of-mind refund once it has been downloaded.</li>
+      <li><strong>Printed book:</strong> you can cancel free of charge until printing starts. After that there are no change-of-mind
+      refunds, but a faulty or damaged book is reprinted or refunded.</li>
+      <li><strong>Gift:</strong> fully refundable until the recipient accepts it, or if the link expires after 60 days without being accepted.</li>
+    </ul>
+    <p style="margin-top:10px">The Terms do not take away your consumer rights. They say:</p>
+    <blockquote>“Nothing in these terms limits rights or remedies that cannot lawfully be excluded, including those under the
+    New Zealand Consumer Guarantees Act and Fair Trading Act where applicable. A remedy depends on the circumstances and
+    applicable law; a blanket no-refund rule does not override those rights.”</blockquote>
+    <p style="margin-top:10px">To ask about an order, a refund or a cancellation, email
+    <a href="mailto:info@bringmesunshinegroup.com">info@bringmesunshinegroup.com</a> or use the
+    <a href="contact.html">contact page</a>. Tell us the date and amount of your payment. Please do not include card numbers
+    or other payment details in your message.</p>
+  </div>
+</section>
+
+<section class="block" id="contact" aria-labelledby="contact-h">
+  <h2 id="contact-h">Contact</h2>
+  <div class="fact">
+    <p>Questions about Your Story, an order or this page: email
+    <a href="mailto:info@bringmesunshinegroup.com">info@bringmesunshinegroup.com</a>.</p>
+    <div class="contact-row">
+      <a class="cta" href="contact.html">Get in touch</a>
+      <span class="note">Our <a href="https://bringmesunshinegroup.com/privacy.html">Privacy Policy</a> explains how your information is handled.</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>© 2026 OurFamilyRocks.com · a member of the <a href="https://bringmesunshinegroup.com">BringMeSunshineGroup.com</a><nav aria-label="BMSG legal documents" class="bmsg-legal-links"><a href="https://bringmesunshinegroup.com/privacy.html">Privacy</a> · <a href="https://bringmesunshinegroup.com/terms.html">Terms &amp; Conditions</a></nav></footer>
+
+</div>
+<script>
+(function(){
+  // Autoplay the silent story video only for people who have not asked for reduced motion. The native controls
+  // let anyone pause or play. If the video files are not published yet, the poster simply stays.
+  var v=document.getElementById('ysv');if(!v)return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  v.addEventListener('error',function(){v.removeAttribute('controls')},true);
+  var p=v.play();if(p&&p.catch)p.catch(function(){});
+})();
+</script>
+<script src="site-layout.js" defer></script>
+</body>
+</html>
