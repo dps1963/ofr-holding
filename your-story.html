@@ -99,6 +99,76 @@
     .steps{grid-template-columns:repeat(3,1fr)}
     .steps li{padding:64px 18px 18px}
   }
+  /* ---- Hero layout: words beside the story animation on wide screens ---- */
+  .hero-grid{display:grid;gap:22px;align-items:center;max-width:60rem;margin:0 auto 36px}
+  @media (min-width:900px){
+    .hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:36px}
+    .hero-grid .hero{text-align:left;margin:0}
+    .hero-grid .hero p{margin:0}
+    .hero-grid .hero .seller{margin-top:14px}
+  }
+  /* ---- Founder story ---- */
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-s);padding:22px 22px 20px;max-width:46rem;margin:0 auto}
+  .story p{margin-top:10px}
+  .story p:first-of-type{margin-top:0}
+  .story .ask{font-family:'Caveat',cursive;font-size:1.5rem;font-weight:600;color:var(--blue-d);font-style:normal}
+  .story .sign{margin-top:14px;color:var(--muted);font-size:.95rem}
+  /* ---- The story animation (inline SVG + CSS, 13 s loop, silent) ----
+     Defaults below are the FINAL frame (scene 6). The keyframes only apply while playing, so with
+     prefers-reduced-motion (or after Pause) the picture rests on the finished book being handed on. */
+  .ysa{margin:0;max-width:34rem;margin-inline:auto;width:100%}
+  .ysa .frame{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-s);padding:8px;position:relative}
+  .ysa svg{display:block;width:100%;height:auto;border-radius:calc(var(--r) - 6px)}
+  .ysa figcaption{color:var(--muted);font-size:.92rem;margin-top:8px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between}
+  .ysa .play{font:inherit;font-weight:700;color:var(--indigo);background:var(--card);border:2px solid var(--indigo);border-radius:999px;padding:.4rem 1rem;min-height:40px;cursor:pointer}
+  .ysa .play:hover{color:var(--on-accent);background:var(--indigo)}
+  .ysa .ink{fill:var(--ink)} .ysa .mut{fill:var(--muted)} .ysa .pg{fill:var(--card);stroke:var(--line);stroke-width:2}
+  .ysa .cov{fill:var(--indigo)} .ysa .cov2{fill:var(--indigo-d)} .ysa .rib{fill:var(--amber)} .ysa .teal{fill:var(--teal-d)}
+  .ysa .onc{fill:var(--on-accent)} .ysa .ln{stroke:var(--muted);stroke-width:3;stroke-linecap:round}
+  .ysa .hand{fill:var(--price-bg);stroke:var(--muted);stroke-width:2.5;stroke-linejoin:round}
+  .ysa .hand-y{fill:var(--card);stroke:var(--teal-d);stroke-width:2.5;stroke-linejoin:round}
+  .ysa .hw{font-family:'Caveat',cursive;font-weight:600;font-size:28px} .ysa .ti{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:22px}
+  @media (prefers-color-scheme: dark){.ysa .cov2{fill:#578FBB}} /* .cov2 is 5.1:1 against dark text — never put text on it */
+  .ysa .sc{opacity:0} .ysa .s6{opacity:1}
+  .ysa.playing .sc{animation:13s linear infinite}
+  .ysa.playing .s1{animation-name:ys1} .ysa.playing .s2{animation-name:ys2} .ysa.playing .s3{animation-name:ys3}
+  .ysa.playing .s4{animation-name:ys4} .ysa.playing .s5{animation-name:ys5} .ysa.playing .s6{animation-name:ys6}
+  @keyframes ys1{0%,14%{opacity:1}18%,100%{opacity:0}}
+  @keyframes ys2{0%,15%{opacity:0}19%,33%{opacity:1}36%,100%{opacity:0}}
+  @keyframes ys3{0%,33%{opacity:0}37%,50%{opacity:1}53%,100%{opacity:0}}
+  @keyframes ys4{0%,50%{opacity:0}54%,70%{opacity:1}73%,100%{opacity:0}}
+  @keyframes ys5{0%,70%{opacity:0}74%,85%{opacity:1}88%,100%{opacity:0}}
+  @keyframes ys6{0%,85%{opacity:0}89%,97%{opacity:1}100%{opacity:0}}
+  /* inner motion, all on the same 13 s clock */
+  .ysa.playing .lid{animation:yslid 13s linear infinite;transform-origin:240px 115px}
+  @keyframes yslid{0%,11%{transform:none}17%,100%{transform:translateY(-26px) rotate(-8deg)}}
+  .ysa.playing .bow{animation:ysbow 13s ease-in-out infinite;transform-origin:240px 100px}
+  @keyframes ysbow{0%,4%,8%,12%{transform:rotate(0)}2%,10%{transform:rotate(-5deg)}6%{transform:rotate(5deg)}}
+  .ysa.playing .hw1{animation:ystxt1 13s linear infinite} .ysa.playing .hw2{animation:ystxt2 13s linear infinite} .ysa.playing .hw3{animation:ystxt3 13s linear infinite}
+  @keyframes ystxt1{0%,19%{opacity:0}23%,100%{opacity:1}}
+  @keyframes ystxt2{0%,23%{opacity:0}27%,100%{opacity:1}}
+  @keyframes ystxt3{0%,27%{opacity:0}31%,100%{opacity:1}}
+  .ysa.playing .pen{animation:yspen 13s ease-in-out infinite}
+  @keyframes yspen{0%,36%,44%,52%{transform:translate(0,0)}40%,48%{transform:translate(-4px,-8px)}}
+  .ysa.playing .bar{animation:ysbar .9s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+  .ysa.playing .bar:nth-child(2){animation-delay:-.15s}.ysa.playing .bar:nth-child(3){animation-delay:-.3s}.ysa.playing .bar:nth-child(4){animation-delay:-.45s}
+  .ysa.playing .bar:nth-child(5){animation-delay:-.6s}.ysa.playing .bar:nth-child(6){animation-delay:-.75s}.ysa.playing .bar:nth-child(7){animation-delay:-.9s}
+  @keyframes ysbar{from{transform:scaleY(.35)}to{transform:scaleY(1)}}
+  .ysa.playing .wl{transform-box:fill-box;transform-origin:left center;animation:13s linear infinite}
+  .ysa.playing .wl:nth-child(1){animation-name:yswl1} @keyframes yswl1{0%,54%{transform:scaleX(0)}58%,100%{transform:scaleX(1)}}
+  .ysa.playing .wl:nth-child(2){animation-name:yswl2} @keyframes yswl2{0%,55.8%{transform:scaleX(0)}59.8%,100%{transform:scaleX(1)}}
+  .ysa.playing .wl:nth-child(3){animation-name:yswl3} @keyframes yswl3{0%,57.6%{transform:scaleX(0)}61.6%,100%{transform:scaleX(1)}}
+  .ysa.playing .wl:nth-child(4){animation-name:yswl4} @keyframes yswl4{0%,59.4%{transform:scaleX(0)}63.4%,100%{transform:scaleX(1)}}
+  .ysa.playing .wl:nth-child(5){animation-name:yswl5} @keyframes yswl5{0%,61.2%{transform:scaleX(0)}65.2%,100%{transform:scaleX(1)}}
+  .ysa.playing .wl:nth-child(6){animation-name:yswl6} @keyframes yswl6{0%,63%{transform:scaleX(0)}67%,100%{transform:scaleX(1)}}
+  .ysa.playing .wl:nth-child(7){animation-name:yswl7} @keyframes yswl7{0%,64.8%{transform:scaleX(0)}68.8%,100%{transform:scaleX(1)}}
+  .ysa.playing .wl:nth-child(8){animation-name:yswl8} @keyframes yswl8{0%,66.6%{transform:scaleX(0)}70.6%,100%{transform:scaleX(1)}}
+  .ysa.playing .grow{animation:ysgrow 13s ease-out infinite;transform-origin:240px 160px}
+  @keyframes ysgrow{0%,72%{transform:scale(.9)}78%,100%{transform:scale(1)}}
+  .ysa.playing .pass{animation:yspass 13s ease-in-out infinite}
+  @keyframes yspass{0%,88%{transform:translate(-140px,0) rotate(-10deg)}96%,100%{transform:translate(0,0) rotate(0)}}
+  .ysa.playing .hand-y{animation:yshy 13s ease-out infinite}
+  @keyframes yshy{0%,88%{transform:translate(0,60px)}95%,100%{transform:translate(0,0)}}
   @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -121,20 +191,130 @@
 
 <main id="content">
 
+<div class="hero-grid">
 <section class="hero">
   <div class="eyebrow">Your Story</div>
-  <h1>Your life story, <span class="b">in your own words</span> — <span class="t">made into a book.</span></h1>
-  <p>Your Story helps you record and write the story of your life. Talk, answer gentle prompts and questions, add photos,
+  <h1>Your life story, <span class="b">in your own voice</span> — <span class="t">made into a book to keep.</span></h1>
+  <p>Your Story helps you tell the story of your life, one memory at a time. Talk, answer gentle prompts and questions, add photos,
   and arrange it all into chapters. When you are ready, turn it into a digital book or a printed book to keep and to pass on.</p>
   <p class="seller">Your Story is a service of <a href="https://bringmesunshinegroup.com">BMSG (Bring Me Sunshine Group)</a>,
   the operator of OurFamilyRocks.com.</p>
 </section>
 
+<figure class="ysa" id="ysa">
+  <div class="frame">
+  <svg viewBox="0 0 480 300" role="img" aria-labelledby="ysa-t ysa-d" focusable="false">
+    <title id="ysa-t">How Your Story began, in six scenes</title>
+    <desc id="ysa-d">A wrapped gift opens to reveal a fill-in book, given with one request: “Tell me your story, Dad”. Inside, the pages are mostly blank and a pen hovers, not knowing where to start. Then a voice is heard: a sound wave flows onto the pages and becomes lines of writing. The pages become a finished hardcover book called Your Story, which an older hand passes to a younger hand.</desc>
+    <!-- 1. the gift -->
+    <g class="sc s1">
+      <rect class="cov" x="170" y="130" width="140" height="110" rx="8"/>
+      <rect class="rib" x="230" y="130" width="20" height="110"/>
+      <g class="lid">
+        <rect class="cov2" x="158" y="100" width="164" height="34" rx="8"/>
+        <rect class="rib" x="230" y="100" width="20" height="34"/>
+        <g class="bow">
+          <ellipse class="rib" cx="214" cy="92" rx="22" ry="12" transform="rotate(-20 214 92)"/>
+          <ellipse class="rib" cx="266" cy="92" rx="22" ry="12" transform="rotate(20 266 92)"/>
+          <circle class="rib" cx="240" cy="96" r="8"/>
+        </g>
+      </g>
+    </g>
+    <!-- 2. the fill-in book: "Tell me your story, Dad" -->
+    <g class="sc s2">
+      <rect class="cov" x="150" y="62" width="180" height="176" rx="8"/>
+      <rect class="cov2" x="150" y="62" width="16" height="176" rx="6"/>
+      <rect class="rib" x="186" y="74" width="134" height="2"/>
+      <text class="hw onc hw1" text-anchor="middle" x="248" y="128">Tell me</text>
+      <text class="hw onc hw2" text-anchor="middle" x="248" y="162">your story,</text>
+      <text class="hw onc hw3" text-anchor="middle" x="248" y="196">Dad</text>
+    </g>
+    <!-- 3. mostly blank pages, a pen hovering -->
+    <g class="sc s3">
+      <rect class="pg" x="92" y="78" width="148" height="164" rx="4"/>
+      <rect class="pg" x="240" y="78" width="148" height="164" rx="4"/>
+      <line class="ln" x1="112" y1="106" x2="190" y2="106" opacity=".55"/>
+      <line class="ln" x1="112" y1="126" x2="160" y2="126" opacity=".35"/>
+      <g class="pen">
+        <rect class="rib" x="286" y="112" width="14" height="86" rx="5" transform="rotate(35 293 155)"/>
+        <polygon class="ink" points="259,208 278,187 288,197" />
+      </g>
+    </g>
+    <!-- 4. a voice becomes words on the page -->
+    <g class="sc s4">
+      <rect class="pg" x="92" y="78" width="148" height="164" rx="4"/>
+      <rect class="pg" x="240" y="78" width="148" height="164" rx="4"/>
+      <g class="wave">
+        <rect class="bar teal" x="30" y="128" width="6" height="56" rx="3"/>
+        <rect class="bar teal" x="40" y="128" width="6" height="56" rx="3"/>
+        <rect class="bar teal" x="50" y="128" width="6" height="56" rx="3"/>
+        <rect class="bar teal" x="60" y="128" width="6" height="56" rx="3"/>
+        <rect class="bar teal" x="70" y="128" width="6" height="56" rx="3"/>
+        <rect class="bar teal" x="80" y="128" width="6" height="56" rx="3"/>
+        <rect class="bar teal" x="90" y="128" width="6" height="56" rx="3"/>
+      </g>
+      <g class="words">
+        <line class="ln wl" x1="112" y1="106" x2="218" y2="106"/>
+        <line class="ln wl" x1="112" y1="128" x2="206" y2="128"/>
+        <line class="ln wl" x1="112" y1="150" x2="214" y2="150"/>
+        <line class="ln wl" x1="112" y1="172" x2="180" y2="172"/>
+        <line class="ln wl" x1="262" y1="106" x2="366" y2="106"/>
+        <line class="ln wl" x1="262" y1="128" x2="356" y2="128"/>
+        <line class="ln wl" x1="262" y1="150" x2="368" y2="150"/>
+        <line class="ln wl" x1="262" y1="172" x2="330" y2="172"/>
+      </g>
+    </g>
+    <!-- 5. a finished hardcover -->
+    <g class="sc s5">
+      <g class="grow">
+        <rect class="cov2" x="168" y="66" width="150" height="190" rx="6"/>
+        <rect class="cov" x="180" y="60" width="150" height="190" rx="6"/>
+        <rect class="teal" x="180" y="212" width="150" height="14"/>
+        <text class="ti onc" text-anchor="middle"><tspan x="255" y="130">Your</tspan><tspan x="255" y="156">Story</tspan></text>
+        <line x1="212" y1="176" x2="298" y2="176" stroke="var(--on-accent)" stroke-width="2" opacity=".7"/>
+      </g>
+    </g>
+    <!-- 6. passed to a younger hand -->
+    <g class="sc s6">
+      <path class="hand" transform="translate(70 0)" d="M-4 302 V228 q0-16 16-16 h8 v-30 q0-9 9-9 t9 9 v30 h10 v-40 q0-9 9-9 t9 9 v40 h10 v-36 q0-9 9-9 t9 9 v36 h10 v-26 q0-9 9-9 t9 9 v26 q14 2 14 16 v48 Z"/>
+      <path class="hand-y" d="M484 302 V240 q0-13-13-13 h-6 v-22 q0-7-7-7 t-7 7 v22 h-8 v-30 q0-7-7-7 t-7 7 v30 h-8 v-26 q0-7-7-7 t-7 7 v26 h-8 v-18 q0-7-7-7 t-7 7 v18 q-11 2-11 13 v40 Z"/>
+      <g class="pass">
+        <rect class="cov2" x="272" y="128" width="96" height="124" rx="5"/>
+        <rect class="cov" x="280" y="124" width="96" height="124" rx="5"/>
+        <rect class="teal" x="280" y="222" width="96" height="10"/>
+        <text class="ti onc" text-anchor="middle" font-size="15"><tspan x="328" y="170">Your</tspan><tspan x="328" y="188">Story</tspan></text>
+      </g>
+    </g>
+  </svg>
+  </div>
+  <figcaption>
+    <span>From one question — “Tell me your story, Dad” — to a book in the hands of the next generation.</span>
+    <button class="play" type="button" id="ysaBtn" aria-controls="ysa" hidden>Pause</button>
+  </figcaption>
+</figure>
+</div>
+
+<section class="block" aria-labelledby="why">
+  <div class="story">
+    <h2 id="why">Why we made Your Story</h2>
+    <p>My daughter gave me a fill-in journal, and with it one simple request:
+    <q class="ask">Tell me your story, Dad.</q></p>
+    <p>I was touched, and I meant to do it. Then I opened it and found page after page of blank lines. Sitting down to write
+    felt daunting. Where do you start? What is worth putting down? I put the journal down, and somehow never picked it up again.</p>
+    <p>Yet talking has always come easily to me. Ask me a question and the words come. Talking was never the problem.
+    Writing was.</p>
+    <p>That is the whole idea behind Your Story. You answer a question by speaking, as if the person asking were sitting across
+    the table. Your spoken words are turned into text you can edit. You tidy them, add a photo or two, and chapter by chapter
+    a book takes shape: one your family can hold, read and keep.</p>
+    <p class="sign">— Dave, founder, Bring Me Sunshine Group</p>
+  </div>
+</section>
+
 <section class="block" aria-labelledby="how">
   <h2 id="how">How it works</h2>
-  <p class="lede">Three steps, at your own pace. You can stop and come back whenever you like.</p>
+  <p class="lede">Three gentle steps, at your own pace. Start with a single memory, stop whenever you like, and come back when you are ready.</p>
   <ol class="steps">
-    <li><h3>Record</h3><p>Answer questions and prompts by speaking or typing. Your recordings are written down for you, and you can add photos and short videos.</p></li>
+    <li><h3>Record</h3><p>Just talk. Answer questions and prompts by speaking or typing. Your recordings are written down for you, and you can add photos and short videos.</p></li>
     <li><h3>Write and arrange</h3><p>Edit the words, choose what goes in, and arrange your memories into chapters, with your photos alongside.</p></li>
     <li><h3>Make your book</h3><p>Preview your finished book, then buy it as a digital book (PDF) or have it printed and posted to you.</p></li>
   </ol>
@@ -249,6 +429,17 @@
 <footer>© 2026 OurFamilyRocks.com · a member of the <a href="https://bringmesunshinegroup.com">BringMeSunshineGroup.com</a><nav aria-label="BMSG legal documents" class="bmsg-legal-links"><a href="https://bringmesunshinegroup.com/privacy.html">Privacy</a> · <a href="https://bringmesunshinegroup.com/terms.html">Terms &amp; Conditions</a></nav></footer>
 
 </div>
+<script>
+(function(){
+  // Story animation: plays by default; rests on the final frame for people who prefer reduced motion. The button
+  // lets anyone pause or play (WCAG 2.2.2). Without JavaScript the picture rests on the final frame.
+  var fig=document.getElementById('ysa'),btn=document.getElementById('ysaBtn');if(!fig||!btn)return;
+  var mq=window.matchMedia('(prefers-reduced-motion: reduce)');
+  function set(play){fig.classList.toggle('playing',play);btn.textContent=play?'Pause':'Play the story';}
+  set(!mq.matches);btn.hidden=false;
+  btn.addEventListener('click',function(){set(!fig.classList.contains('playing'));});
+})();
+</script>
 <script src="site-layout.js" defer></script>
 </body>
 </html>
