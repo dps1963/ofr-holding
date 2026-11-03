@@ -28,7 +28,7 @@
     :root{
       --indigo:#77B4DF; --indigo-d:#A3CDEB; --blue-d:#77B4DF; --teal-d:#5BC0AA; --amber:#E0A360;
       --ink:#E9ECEF; --muted:#A6AFB8; --bg:#14181C; --line:#2B333B; --card:#1C2228; --hero-a:#1A2129;
-      --on-accent:#14181C; --price-bg:#22303B;
+      --on-accent:#14181C; --price-bg:#182028;
       --shadow-s:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);
       color-scheme:dark;
     }
@@ -44,6 +44,7 @@
   header.top{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;margin-bottom:28px}
   .home{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:inherit}
   .logo{width:min(200px,55vw);height:auto}
+  @media (prefers-color-scheme: dark){.logo{background:#F3F6F9;border-radius:12px;padding:8px 12px}}
   .kind-tag{display:block;font-family:'Caveat',cursive;font-size:1.3rem;font-weight:500;letter-spacing:.01em;color:var(--teal-d);margin-top:-4px}
   nav.primary{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;font-weight:600}
   nav.primary a{text-decoration:none;padding:6px 2px}
@@ -75,7 +76,7 @@
   .product ul li::marker{color:var(--teal-d)}
   .pricelist{background:var(--price-bg);border-radius:12px;padding:12px 14px;display:grid;gap:6px}
   .pricelist div{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-  .pricelist strong{font-family:'Bricolage Grotesque',sans-serif;font-size:1.15rem}
+  .pricelist dd{margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.15rem}
   .note{color:var(--muted);font-size:.95rem}
   .facts{display:grid;gap:14px;margin-top:16px}
   .fact{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-s);padding:18px}
@@ -157,10 +158,10 @@
       <div class="kind">Printed book</div>
       <div class="price">from NZ$209<small>per copy, one-off payment, plus shipping</small></div>
       <p><strong>Your book, professionally printed and posted to you.</strong></p>
-      <div class="pricelist" aria-label="Printed book prices">
-        <div><span>Hardcover</span><strong>NZ$299</strong></div>
-        <div><span>Softcover</span><strong>NZ$209</strong></div>
-      </div>
+      <dl class="pricelist">
+        <div><dt>Hardcover</dt><dd>NZ$299</dd></div>
+        <div><dt>Softcover</dt><dd>NZ$209</dd></div>
+      </dl>
       <ul>
         <li>Choose hardcover or softcover and how many copies</li>
         <li>Shipping is extra and is shown at checkout before you pay</li>
@@ -196,7 +197,8 @@
       <p>Your book is printed and posted to the address you give at checkout. Shipping is charged per order, with one flat rate for
       New Zealand addresses and a higher flat rate for overseas addresses (currently NZ$15 within New Zealand and NZ$30 overseas).
       The amount is shown at checkout before you pay.</p>
-      <p>The expected delivery time is shown at checkout.</p>
+      <p>Delivery times vary by destination. If you want an estimate before you order, email
+      <a href="mailto:info@bringmesunshinegroup.com">info@bringmesunshinegroup.com</a>.</p>
     </div>
     <div class="fact">
       <h3>Gift</h3>
