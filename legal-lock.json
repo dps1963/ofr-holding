@@ -37,7 +37,8 @@
     "index.html",
     "donate.html",
     "full-landing/index.html",
-    "contact.html"
+    "contact.html",
+    "your-story.html"
   ],
   "redirectConfig": "hosting/default.conf.template",
   "folded": [
