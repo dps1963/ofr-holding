@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <title>Your Story — record your life story and turn it into a book</title>
 <meta name="description" content="Your Story by Our Family Rocks: record and write your life story with voice, prompts and questions, then turn it into a digital or printed book. Prices in NZ$.">
 <link rel="icon" href="brand/assets/favicon-32.png" sizes="32x32">
@@ -14,24 +14,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://ourfamilyrocks.com/your-story.html">
 <style>
-  /* Brand tokens from brand/tokens.css (Ocean theme; Night theme for dark). Every text/background pair below is
-     WCAG AAA (7:1 or better) in both schemes: muted text is #4A5159 rather than the AA-only slate, the eyebrow uses
-     teal-d, headline accent uses blue-d. */
+  /* Brand tokens from brand/tokens.css (Ocean theme). This page is LIGHT ONLY, whatever the visitor's system theme
+     (Dave, 4 Nov 2026: Your Story is about joy and celebrating a life), so there are no dark-mode overrides here.
+     Every text/background pair below is WCAG AAA (7:1 or better): muted text is #4A5159 rather than the AA-only
+     slate, the eyebrow uses teal-d, headline accent uses blue-d. */
   :root{
     --indigo:#5C4A82; --indigo-d:#463769; --blue-d:#154C74; --teal-d:#0B5A4D; --amber:#A4560C;
     --ink:#272B30; --muted:#4A5159; --bg:#FAFBFC; --line:#E6E9ED; --card:#ffffff; --hero-a:#F3F6F9;
     --on-accent:#ffffff; --price-bg:#F3F6F9; --r:18px;
     --shadow-s:0 1px 2px rgba(30,35,42,.05),0 4px 14px rgba(30,35,42,.06);
     color-scheme:light;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --indigo:#77B4DF; --indigo-d:#A3CDEB; --blue-d:#77B4DF; --teal-d:#5BC0AA; --amber:#E0A360;
-      --ink:#E9ECEF; --muted:#A6AFB8; --bg:#14181C; --line:#2B333B; --card:#1C2228; --hero-a:#1A2129;
-      --on-accent:#14181C; --price-bg:#182028;
-      --shadow-s:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);
-      color-scheme:dark;
-    }
   }
   *{box-sizing:border-box;margin:0}
   html{scroll-behavior:smooth}
@@ -44,7 +36,6 @@
   header.top{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;margin-bottom:28px}
   .home{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:inherit}
   .logo{width:min(200px,55vw);height:auto}
-  @media (prefers-color-scheme: dark){.logo{background:#F3F6F9;border-radius:12px;padding:8px 12px}}
   .kind-tag{display:block;font-family:'Caveat',cursive;font-size:1.3rem;font-weight:500;letter-spacing:.01em;color:var(--teal-d);margin-top:-4px}
   nav.primary{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;font-weight:600}
   nav.primary a{text-decoration:none;padding:6px 2px}
@@ -111,12 +102,16 @@
   .story p:first-of-type{margin-top:0}
   .story .ask{font-family:'Caveat',cursive;font-size:1.5rem;font-weight:600;color:var(--blue-d);font-style:normal}
   .story .sign{margin-top:14px;color:var(--muted);font-size:.95rem}
-  /* ---- The story video (assets/ys-story.mp4 + .webm, silent, poster assets/ys-story-poster.jpg).
-     Until the files are published the poster is all that shows; the script never autoplays under
-     prefers-reduced-motion, and the native controls give everyone play/pause (WCAG 2.2.2). ---- */
+  /* ---- The story photo and video. The photo (assets/ys-story-photo.webp/.jpg, mother and daughter) sits in the
+     frame with its alt text; Dave's video (assets/ys-story.webm + .mp4, no audio track) lies over it with the same
+     photo as its poster, so anyone who does not play it, or has asked for reduced motion, sees the photo. The script
+     never autoplays under prefers-reduced-motion, and the native controls give everyone play/pause (WCAG 2.2.2).
+     If the video cannot load it is hidden and the photo stays. ---- */
   .ysv{margin:0;max-width:34rem;margin-inline:auto;width:100%}
   .ysv .frame{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-s);padding:8px}
-  .ysv video{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:calc(var(--r) - 6px);background:var(--hero-a)}
+  .ysv .stage{position:relative;aspect-ratio:16/9;border-radius:calc(var(--r) - 6px);overflow:hidden;background:var(--hero-a)}
+  .ysv .stage img,.ysv .stage video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+  .ysv .stage video[hidden]{display:none}
   .ysv figcaption{color:var(--muted);font-size:.92rem;margin-top:8px}
   @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 </style>
@@ -150,14 +145,21 @@
 
 <figure class="ysv">
   <div class="frame">
-  <video id="ysv" poster="assets/ys-story-poster.jpg" muted playsinline loop controls preload="none" width="1280" height="720"
-         aria-describedby="ysv-d">
-    <source src="assets/ys-story.webm" type="video/webm">
-    <source src="assets/ys-story.mp4" type="video/mp4">
-  </video>
+  <div class="stage">
+    <picture>
+      <source srcset="assets/ys-story-photo.webp" type="image/webp">
+      <img src="assets/ys-story-photo.jpg" width="1280" height="720" fetchpriority="high" decoding="async"
+           alt="A smiling grey-haired mother and her grown-up daughter sit close together at a garden table, sharing an old black-and-white family photograph.">
+    </picture>
+    <video id="ysv" poster="assets/ys-story-photo.webp" muted playsinline loop controls preload="none" width="1280" height="720"
+           aria-describedby="ysv-d">
+      <source src="assets/ys-story.webm" type="video/webm">
+      <source src="assets/ys-story.mp4" type="video/mp4">
+    </video>
+  </div>
   </div>
   <figcaption>From one question — “Tell me your story, Dad” — to a book in the hands of the next generation.
-    <span id="ysv-d" hidden>Silent video: a wrapped gift opens to reveal a fill-in book, given with one request: “Tell me your story, Dad”. Inside, the pages are mostly blank and a pen hovers, not knowing where to start. Then a voice is heard: a sound wave flows onto the pages and becomes lines of writing. The pages become a finished hardcover book called Your Story, which an older hand passes to a younger hand.</span>
+    <span id="ysv-d" hidden>Silent 10-second video with no sound track: a father and his grown-up daughter sit side by side on a leather sofa beside a log fire, turning the pages of a family photo album together, smiling and laughing as they remember.</span>
   </figcaption>
 </figure>
 </div>
@@ -165,7 +167,7 @@
 <section class="block" aria-labelledby="why">
   <div class="story">
     <h2 id="why">Why we made Your Story</h2>
-    <p>My daughter gave me a fill-in journal, and with it one simple request:
+    <p>My daughter gave me a fill-in journal, and with it one simple request:<br>
     <q class="ask">Tell me your story, Dad.</q></p>
     <p>I was touched, and I meant to do it. Then I opened it and found page after page of blank lines. Sitting down to write
     felt daunting. Where do you start? What is worth putting down? I put the journal down, and somehow never picked it up again.</p>
@@ -308,10 +310,11 @@
 <script>
 (function(){
   // Autoplay the silent story video only for people who have not asked for reduced motion. The native controls
-  // let anyone pause or play. If the video files are not published yet, the poster simply stays.
+  // let anyone pause or play. If the video cannot load, it is hidden and the photo underneath stays.
   var v=document.getElementById('ysv');if(!v)return;
+  var s=v.querySelectorAll('source'),last=s[s.length-1],hide=function(){v.hidden=true};
+  v.addEventListener('error',hide);if(last)last.addEventListener('error',hide);
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  v.addEventListener('error',function(){v.removeAttribute('controls')},true);
   var p=v.play();if(p&&p.catch)p.catch(function(){});
 })();
 </script>
